@@ -1,0 +1,16 @@
+body {
+    background-color: #fff;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+    margin: 8px 25%;
+    padding: 12px 10%;
+}
+
+.field {
+    margin-bottom: 20px;
+    padding: 20px;
+}
