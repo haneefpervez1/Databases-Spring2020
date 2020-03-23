@@ -7,4 +7,6 @@
 	Statement st = con.createStatement();
 	int rs;
 	rs = st.executeUpdate("INSERT INTO Users (Username, Password) VALUES ('" + username + "', '" + password + "')");
+	session.setAttribute("user", username);
+	response.sendRedirect("Welcome.jsp");
 %>
