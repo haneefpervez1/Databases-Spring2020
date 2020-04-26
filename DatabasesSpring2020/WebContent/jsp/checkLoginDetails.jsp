@@ -11,6 +11,8 @@
 	if (rs.next()){ 
 		System.out.println("User found"); 
 		session.setAttribute("user", username);
+		String role = rs.getString("role");
+		session.setAttribute("role", role);
 		response.sendRedirect("Welcome.jsp");
 	} else {
 		out.println("Invalid password <a href='Login.jsp'>try again</a>");
