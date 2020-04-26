@@ -10,10 +10,10 @@
 <body>
 	<h3>Sign In</h3>
         <div>
-            <form class="col">
+            <form class="col" action="checkLoginDetails.jsp" method="POST">
                     <input class="field" type="text" id="username" name="username" placeholder="Username">
                     <input class="field" type="text" id="password" name="password" placeholder="Password">
-                    <button>Login</button>
+                    <input type="submit" value="Submit"/>
             </form>
         </div>
         <a href="./Register.jsp">
