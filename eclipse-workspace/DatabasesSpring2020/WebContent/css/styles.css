@@ -14,3 +14,10 @@ body {
     margin-bottom: 20px;
     padding: 20px;
 }
+
+.home {
+	display: flex;
+	flex-direction: column;
+	margin: 24px;
+	align-content: center;
+}
