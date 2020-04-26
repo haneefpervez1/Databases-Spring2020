@@ -6,7 +6,7 @@ You are not logged in<br/>
 <%} else {
 %>
 <a href='Logout.jsp'>Log out</a>
-<%// Renders different screens based on role %>
+<%// Renders different screens based on role askfnkasfkasfk %>
 Welcome <%=session.getAttribute("user")%>
 <% String role = ((String)session.getAttribute("role")).trim();
 	System.out.println(role);
