@@ -18,11 +18,11 @@
 	<h4>Sort</h4>
 	<form action="sortTrains.jsp" method="POST">
 		<select id="sort" name="sort">
-			<option value="arrival">Arrival Time</option>
-			<option value="departure">Departure Time</option>
-			<option value="origin">Origin</option>
-			<option value="dest">Destination</option>
-			<option value="fare">Fare</option>
+			<option value="arrival_datetime">Arrival Time</option>
+			<option value="dep_datetime">Departure Time</option>
+			<option value="origin_station">Origin</option>
+			<option value="dest_station">Destination</option>
+			<option value="fare_amount">Fare</option>
 		</select>
 		<input type="submit" value="Submit"/>
 	</form>
