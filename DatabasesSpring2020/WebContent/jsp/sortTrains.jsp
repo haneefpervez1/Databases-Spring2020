@@ -10,6 +10,11 @@ Connection con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us
 Statement st = con.createStatement();
 ResultSet rs;
 rs = st.executeQuery("SELECT * FROM Train_Schedule, Transit_Line WHERE Train_Schedule.transitlinename = Transit_Line.transitlinename ORDER BY "+ sort+ ";");
+if (rs.next()){ 
+	System.out.println("Test");
+}
+else
+	System.out.println("Failed");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
