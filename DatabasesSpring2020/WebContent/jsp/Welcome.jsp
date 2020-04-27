@@ -13,7 +13,7 @@ Welcome <%=session.getAttribute("user")%>
 	if (role.equals("Customer")) {
 %>
 		<a>My Reservations</a>
-		<a>View Train Schedules</a>
+		<a href="ViewTrainSchedules.jsp">View Train Schedules</a>
 		<a href="sendQuestion.jsp">Ask a question</a>
 		<%
     } else if (role.equals("Customer Representative")){
