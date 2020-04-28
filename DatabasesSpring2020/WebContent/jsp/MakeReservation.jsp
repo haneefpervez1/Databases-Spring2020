@@ -16,6 +16,12 @@
 		String dept_time = (String)request.getParameter("dept_time");
 		String schedId = (String)request.getParameter("schedId");
 		String fare = (String)request.getParameter("fare");
+		request.setAttribute("transitline", transitline);
+		request.setAttribute("origin", origin);
+		request.setAttribute("dest", dest);
+		request.setAttribute("dept_time", dept_time);
+		request.setAttribute("schedId", schedId);
+		request.setAttribute("fare", fare);
 	%>
 	<table>
 		<tr>
@@ -31,20 +37,21 @@
 			<td><%= dept_time %></td>
 		</tr>
 	</table>
-	<form>
+	<form action="sendReservationDetails.jsp?line=${transitline}&origin=${origin}&dest=${dest}&dept_time=${dept_time}&schedId=${schedId}&fare=${fare}" method="POST">
 		<select id="fare_type" name="fare_type">
-			<option value="one_way">One Way</option>
-			<option value="round_trip">Round Trip</option>
+			<option value="one_way">One Way (<%= "$" + Float.parseFloat(fare) %>)</option>
+			<option value="round_trip">Round Trip (<%= "$" + (Float.parseFloat(fare) * 2) %>)</option>
 		</select>
 		<select id="class" name="class">
-			<option value="economy">Economy</option>
-			<option value="business">Business</option>
-			<option value="first">First</option>
+			<option value="Economy">Economy</option>
+			<option value="Business">Business (2x fare)</option>
+			<option value="First">First (3x fare)</option>
 		</select>
 		<select id="discount" name="discount">
-			<option value="child">Child</option>
-			<option value="senior">Senior</option>
-			<option value="disabled">Disabled</option>
+			<option value="none">None</option>
+			<option value="child">Child (50% discount)</option>
+			<option value="senior">Senior (20% discount)</option>
+			<option value="disabled">Disabled (50% discount)</option>
 		</select>
 		<input type="submit" value="Submit"/>
 	</form>
