@@ -18,4 +18,6 @@
 		out.println("Invalid password <a href='Login.jsp'>try again</a>");
 		System.out.println("User not found");
 	}
+	con.close();
+	st.close();
 %>
