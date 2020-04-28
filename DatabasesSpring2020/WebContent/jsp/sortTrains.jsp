@@ -31,6 +31,7 @@ Statement st = con.createStatement();
 ResultSet rs;
 rs = st.executeQuery("SELECT * FROM Train_Schedule, Transit_Line WHERE Train_Schedule.transitlinename = Transit_Line.transitlinename ORDER BY "+ sort+ ";");
 while (rs.next()){ 
+	int schedId = rs.getInt("scheduleID");
 	String transitlinename = rs.getString("transitlinename");
 	int tid = rs.getInt("tid");
 	int avail_seat = rs.getInt("avail_seats");
@@ -39,8 +40,15 @@ while (rs.next()){
 	java.sql.Timestamp dept_time = rs.getTimestamp("dep_datetime");
 	java.sql.Timestamp ariv_time = rs.getTimestamp("arrival_datetime");
 	int totalTravel = rs.getInt("total_travel_time");
+	float fare = rs.getFloat("fare_amount");
 	String fare_amount = "$" + String.valueOf(rs.getFloat("fare_amount"));
 	String fare_type = rs.getString("fare_type");
+	request.setAttribute("transitlinename", transitlinename);
+	request.setAttribute("origin", origin);
+	request.setAttribute("dest", dest);
+	request.setAttribute("dept_time", dept_time);
+	request.setAttribute("schedId", schedId);
+	request.setAttribute("fare", fare);
 	%>
 			<tr>
 				<td><%= transitlinename %></td>
@@ -53,7 +61,7 @@ while (rs.next()){
 				<td><%= totalTravel %></td>
 				<td><%= fare_amount %></td>
 				<td>
-					<a href="MakeReservation.jsp">Reserve</a>
+					<a href="MakeReservation.jsp?line=${transitlinename}&origin=${origin}&dest=${dest}&dept_time=${dept_time}&schedId=${schedId}&fare=${fare}">Reserve</a>
 				</td>
 			</tr>
 <% } %>	
