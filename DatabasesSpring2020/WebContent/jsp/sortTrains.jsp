@@ -28,8 +28,9 @@ System.out.println(sort);
 Class.forName("com.mysql.jdbc.Driver").newInstance();
 Connection con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
 Statement st = con.createStatement();
+String query = "SELECT * FROM Train_Schedule AS ts, Transit_Line AS tl WHERE ts.transitlinename=tl.transitlinename ORDER BY ";
 ResultSet rs;
-rs = st.executeQuery("SELECT * FROM Train_Schedule, Transit_Line WHERE Train_Schedule.transitlinename = Transit_Line.transitlinename ORDER BY "+ sort+ ";");
+rs = st.executeQuery(query + sort + ";");
 while (rs.next()){ 
 	int schedId = rs.getInt("scheduleID");
 	String transitlinename = rs.getString("transitlinename");
