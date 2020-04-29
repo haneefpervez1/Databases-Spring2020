@@ -48,13 +48,6 @@
 		int avail_seat = rs.getInt("avail_seats");
 		int totalTravel = rs.getInt("total_travel_time");
 		request.setAttribute("res_num", res_num);
-		request.setAttribute("date_made", origin);
-		request.setAttribute("total_fare", total_fare);
-		request.setAttribute("cust_rep", cust_rep);
-		request.setAttribute("origin", origin);
-		request.setAttribute("dept_time", dept_time);
-		request.setAttribute("dest", dest);
-		request.setAttribute("ariv_time", ariv_time);
 		%>
 				<tr>
 					<td><%= res_num %></td>
@@ -66,6 +59,9 @@
 					<td><%= dept_time %></td>
 					<td><%= dest %></td>
 					<td><%= ariv_time %></td>
+					<td>
+						<a href="deleteReservation.jsp?res=${res_num}">Delete</a>
+					</td>
 				</tr>
 <% } %>	
 		</table>
