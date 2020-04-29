@@ -113,6 +113,8 @@
         <input type="submit" onclick="editRepresentative()" value="Save">
     </form>
 <% }
+    con.close();
+    st.close();
 } catch (Exception e) {
         e.printStackTrace();
 }%>

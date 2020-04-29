@@ -34,7 +34,8 @@
                 + "', email ='" + email
                 + "', password ='" + password
                 + "' WHERE username = '" + username + "'");
-
+        con.close();
+        st.close();
         out.println("Customer Successfully Modified: '" + username + "'<br><a href='Manage.jsp'>Admin Panel</a>");
     } catch (Exception e) {
         e.printStackTrace();

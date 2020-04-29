@@ -21,6 +21,8 @@
         }
 
         st.executeUpdate("DELETE FROM Users WHERE username='" + username + "'");
+        con.close();
+        st.close();
         out.println("User Successfully Deleted: " + username + "<br><a href='Manage.jsp'>Admin Panel</a>");
     } catch (Exception e) {
         e.printStackTrace();

@@ -21,6 +21,8 @@
         }
 
         st.executeUpdate("INSERT INTO Users (Username, role) VALUES ('" + username + "', 'Customer')");
+        con.close();
+        st.close();
         out.println("New Customer Successfully Added: " + username + "<br><a href='Manage.jsp'>Admin Panel</a>");
     } catch (Exception e) {
         e.printStackTrace();

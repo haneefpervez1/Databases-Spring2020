@@ -24,7 +24,8 @@
                 + "', first_name ='" + first_name
                 + "', password ='" + password
                 + "' WHERE username = '" + username + "'");
-
+        con.close();
+        st.close();
         out.println("Customer Representative Successfully Modified: '" + username + "'<br><a href='Manage.jsp'>Admin Panel</a>");
     } catch (Exception e) {
         e.printStackTrace();
