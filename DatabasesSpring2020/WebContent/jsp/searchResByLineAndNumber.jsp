@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../css/styles.css">
 </head>
 <body>
+<a href='Manage.jsp'>Back To Admin Panel</a><br>
 <%
     try {
         String line = request.getParameter("line");
@@ -55,7 +56,5 @@ Train Number: <%=train%>
     }
     %>
 </table>
-<br>
-<a href='Manage.jsp'>Admin Panel</a>
 </body>
 </html>

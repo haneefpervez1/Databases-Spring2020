@@ -29,6 +29,7 @@
     </script>
 </head>
 <body>
+<a href='Manage.jsp'>Back To Admin Panel</a><br>
 <%
     try {
     String username = request.getParameter("username");
@@ -39,6 +40,8 @@
     rs = st.executeQuery("SELECT * FROM Users WHERE username='" + username + "'");
     if (!rs.next()){
         out.println("Error: User '" + username + "' Not Found");
+        con.close();
+        st.close();
         return;
     }
 
@@ -125,7 +128,5 @@
 } catch (Exception e) {
         e.printStackTrace();
 }%>
-<br>
-<a href='Manage.jsp'>Admin Panel</a>
 </body>
 </html>

@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../css/styles.css">
 </head>
 <body>
+<a href='Manage.jsp'>Back To Admin Panel</a><br>
 <%
     try {
         String username = request.getParameter("username");
@@ -17,9 +18,13 @@
         rs = st.executeQuery("SELECT * FROM Users WHERE username='" + username + "'");
         if (!rs.next()){
             out.println("Error: User '" + username + "' Not Found");
+            con.close();
+            st.close();
             return;
         } else if (!rs.getString("role").equals("Customer")) {
             out.println("Error: '" + username + "' Is Not A Customer");
+            con.close();
+            st.close();
             return;
         } else { %>
             <h3><%=username%>'s Reservations:</h3>
@@ -54,13 +59,12 @@
                 <td><%=rs.getString("cust_rep")%></td>
             </tr>
         <% }
-
+        con.close();
+        st.close();
     } catch (Exception e) {
         e.printStackTrace();
     }
 %>
 </table>
-<br>
-<a href='Manage.jsp'>Admin Panel</a>
 </body>
 </html>

@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../css/styles.css">
 </head>
 <body>
+<a href='Manage.jsp'>Back To Admin Panel</a><br>
 <%
     String line = request.getParameter("line");
     out.println("<h3>Transit Line: " + line + "</h3>");
@@ -18,7 +19,7 @@
 
         ResultSet rs = st.executeQuery("SELECT SUM(total_fare + booking_fee) FROM Reservations r JOIN Train_Schedule ts ON r.scheduleID=ts.scheduleID WHERE transitlinename='" + line + "'");
         if (rs.next()) {
-            out.println("<h3>Total Sales: $" + rs.getString(1) + "</h3>");
+            out.println("<h3>Total Revenue: $" + rs.getString(1) + "</h3>");
         }
 
         con.close();
@@ -27,7 +28,5 @@
         e.printStackTrace();
     }
 %>
-<br>
-<a href='Manage.jsp'>Admin Panel</a>
 </body>
 </html>

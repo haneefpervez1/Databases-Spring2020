@@ -57,8 +57,16 @@
             form.submit();
         }
 
+        function revSummaryByUsernameFieldEmpty() {
+            if (document.getElementById('revSummaryUsername').value === "") {
+                alert("Error: Username Missing");
+                return true;
+            }
+            return false;
+        }
+
         function revSummaryByUsername() {
-            if (searchResUserFieldEmpty()) return;
+            if (revSummaryByUsernameFieldEmpty()) return;
             let form = document.getElementById('revSummaryByUsernameForm');
             form.action = 'revSummaryByUsername.jsp';
             form.submit();
@@ -210,8 +218,8 @@
     </form>
     <br>
     <form id="revSummaryByUsernameForm" method="post">
-        <label for="customerUsernameRevenue">Customer Username:</label>
-        <input type="text" id="customerUsernameRevenue">
+        <label for="revSummaryUsername">Customer Username:</label>
+        <input type="text" id="revSummaryUsername" name="username">
         <input type="button" onclick="revSummaryByUsername()" value="View">
     </form>
 </div>

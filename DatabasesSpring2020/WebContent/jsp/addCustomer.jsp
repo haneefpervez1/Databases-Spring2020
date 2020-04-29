@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../css/styles.css">
 </head>
 <body>
+<a href='Manage.jsp'>Back To Admin Panel</a><br>
 <%
     try {
         String username = request.getParameter("username");
@@ -28,7 +29,5 @@
         e.printStackTrace();
     }
 %>
-<br>
-<a href='Manage.jsp'>Admin Panel</a>
 </body>
 </html>
