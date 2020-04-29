@@ -12,7 +12,7 @@
 	<form action="searchTrains.jsp" method="POST">
 		<input type="text" id="origin" name="origin" placeholder="origin">
 		<input type="text" id="destination" name="destination" placeholder="destination">
-		<input type="text" id="date" name=date placeholder="date">
+		<input type="text" id="date" name=date placeholder="date (mm/dd/yyyy)">
 		<input type="submit" value="Submit"/>
 	</form>
 	<h4>Sort</h4>
