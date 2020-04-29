@@ -226,12 +226,48 @@
 
 <!-- Determine which customer generated most total revenue -->
 <div class="col">
-Customer Who Generated Most Revenue:
+    <%! String bestCustomer = ""; %>
+    <%
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Connection con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("SELECT username, MAX(rev) FROM (SELECT username, SUM(total_fare + booking_fee) rev FROM Reservations GROUP BY username) t1");
+
+            if (rs.next()) {
+                bestCustomer = rs.getString("username");
+            }
+
+            con.close();
+            st.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    %>
+
+Customer Who Generated Most Revenue: <%=bestCustomer%>
 </div>
 
 <!-- Produce a list of the 5 most active transit lines (most reservations per month) -->
 <div class="col">
-5 Most Active Transit Lines:
+5 Most Active Transit Lines:<br>
+    <%
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Connection con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("SELECT transitlinename, COUNT(transitlinename) resCount FROM Reservations r JOIN Train_Schedule ts ON r.scheduleID=ts.scheduleID GROUP BY transitlinename ORDER BY resCount DESC LIMIT 5");
+
+            while (rs.next()) {
+                out.println(rs.getString("transitlinename") + "<br>");
+            }
+
+            con.close();
+            st.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    %>
 </div>
 
 </body>
