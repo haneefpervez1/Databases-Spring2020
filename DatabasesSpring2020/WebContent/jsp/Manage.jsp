@@ -1,4 +1,13 @@
 <%@ page import = "java.sql.*, java.time.*" %>
+
+<%
+    if ((session.getAttribute("user") == null) || !(session.getAttribute("role").equals("Manager"))) {
+        response.sendRedirect("../index.html");
+    } else {
+        out.println("<a href='Logout.jsp'>Log out</a><br>");
+    }
+%>
+
 <!DOCTYPE html>
 <html>
 <head>

@@ -21,9 +21,7 @@ Welcome <%=session.getAttribute("user")%>
 		<p>Customer Rep screen</p>
 <%
     } else if (role.equals("Manager")) {
-%>
-		<p>Manager Screen</p>
-<%    	
+		response.sendRedirect("Manage.jsp");
     }
 }
 %>
