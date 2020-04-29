@@ -12,7 +12,7 @@ Class.forName("com.mysql.jdbc.Driver").newInstance();
 Connection con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
 Statement st = con.createStatement();
 
-String query = "SELECT * FROM Train_Schedule AS ts, Transit_Line AS tl WHERE ts.transitlinename=tl.transitlinename";
+String query = "SELECT *, COUNT(s.sid) AS NumberOfStops FROM Train_Schedule AS ts, Transit_Line AS tl, Stops AS s WHERE ts.transitlinename=tl.transitlinename AND s.scheduleID=ts.scheduleID";
 String use_origin = " AND tl.origin_station=(SELECT sid FROM Stations WHERE name=\""+origin+"\")";
 String use_dest = " AND tl.dest_station=(SELECT sid FROM Stations WHERE name=\""+dest+"\")";
 String use_date = " AND ts.dep_datetime=STR_TO_DATE('"+date+"','%m/%d/%Y')";
