@@ -36,47 +36,47 @@ Statement st = con.createStatement();
 String query = "SELECT *, COUNT(s.sid) AS NumberOfStops FROM Train_Schedule AS ts, Transit_Line AS tl, Stops AS s WHERE ts.transitlinename=tl.transitlinename AND s.scheduleID=ts.scheduleID";
 String use_origin = " AND tl.origin_station=(SELECT sid FROM Stations WHERE name=\""+origin+"\")";
 String use_dest = " AND tl.dest_station=(SELECT sid FROM Stations WHERE name=\""+dest+"\")";
-String use_date = " AND ts.dep_datetime=STR_TO_DATE('"+date+"','%m/%d/%Y')";
+String use_date = " AND ts.dep_datetime>=STR_TO_DATE('"+date+"','%m/%d/%Y') AND ts.dep_datetime<ADDDATE(STR_TO_DATE('"+date+"','%m/%d/%Y'), 1)";
 String final_query = "";
 
 if(!origin.isEmpty() && !dest.isEmpty() && !date.isEmpty())			// All 3 are searched
 {
-	final_query += query + use_origin + use_dest + use_date + ";";
+	final_query += query + use_origin + use_dest + use_date + " GROUP BY ts.scheduleID;";
 	System.out.println(final_query);
 }
 else if(!origin.isEmpty() && !dest.isEmpty() && date.isEmpty())		// Origin and dest are searched
 {
-	final_query += query + use_origin + use_dest + ";";
+	final_query += query + use_origin + use_dest + " GROUP BY ts.scheduleID;";
 	System.out.println(final_query);
 }
 else if(!origin.isEmpty() && dest.isEmpty() && !date.isEmpty())		// Origin and date are searched
 {
-	final_query += query + use_origin + use_date + ";";
+	final_query += query + use_origin + use_date + " GROUP BY ts.scheduleID;";
 	System.out.println(final_query);
 }
 else if(origin.isEmpty() && !dest.isEmpty() && !date.isEmpty())		// Dest and date are searched
 {
-	final_query += query + use_dest + use_date + ";";
+	final_query += query + use_dest + use_date + " GROUP BY ts.scheduleID;";
 	System.out.println(final_query);
 }
 else if(!origin.isEmpty() && dest.isEmpty() && date.isEmpty())		// Just origin searched
 {
-	final_query += query + use_origin + ";";
+	final_query += query + use_origin + " GROUP BY ts.scheduleID;";
 	System.out.println(final_query);
 }
 else if(origin.isEmpty() && !dest.isEmpty() && date.isEmpty())		// Just dest searched
 {
-	final_query += query + use_dest + ";";
+	final_query += query + use_dest + " GROUP BY ts.scheduleID;";
 	System.out.println(final_query);
 }
 else if(origin.isEmpty() && dest.isEmpty() && !date.isEmpty())		// Just date searched
 {
-	final_query += query + use_date + ";";
+	final_query += query + use_date + " GROUP BY ts.scheduleID;";
 	System.out.println(final_query);
 }
 else																// No filters; show all train schedules
 {
-	final_query += query + ";";
+	final_query += query + " GROUP BY ts.scheduleID;";
 	System.out.println(final_query);
 }
 
