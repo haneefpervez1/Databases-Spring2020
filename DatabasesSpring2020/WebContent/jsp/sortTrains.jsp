@@ -17,6 +17,7 @@
 		<th>Available Seats</th>
 		<th>Origin</th>
 		<th>Destination</th>
+		<th>Number of Stops</th>
 		<th>Departure Time</th>
 		<th>Arrival Time</th>
 		<th>Total Travel Time</th>
@@ -33,13 +34,14 @@ String query2 = "SELECT Transit_Line.transitlinename, Stations.name, stop_number
 
 ResultSet rs;
 rs = st.executeQuery(query + sort + ";");
-while (rs.next()){ 
+while (rs.next()) {
 	int schedId = rs.getInt("scheduleID");
 	String transitlinename = rs.getString("transitlinename");
 	int tid = rs.getInt("tid");
 	int avail_seat = rs.getInt("avail_seats");
 	int origin = rs.getInt("origin_station");
 	int dest = rs.getInt("dest_station");
+	int numStops = rs.getInt("NumberOfStops"); // changed
 	java.sql.Timestamp dept_time = rs.getTimestamp("dep_datetime");
 	java.sql.Timestamp ariv_time = rs.getTimestamp("arrival_datetime");
 	int totalTravel = rs.getInt("total_travel_time");
@@ -52,6 +54,7 @@ while (rs.next()){
 	request.setAttribute("dept_time", dept_time);
 	request.setAttribute("schedId", schedId);
 	request.setAttribute("fare", fare);
+	request.setAttribute("numStops", numStops);
 	%>
 			<tr>
 				<td><%= transitlinename %></td>
@@ -59,6 +62,7 @@ while (rs.next()){
 				<td><%= avail_seat %></td>
 				<td><%= origin %></td>
 				<td><%= dest %></td>
+				<td><%= numStops %>
 				<td><%= dept_time %></td>
 				<td><%= ariv_time %></td>
 				<td><%= totalTravel %></td>
@@ -84,4 +88,3 @@ while (rs.next()){
 	con.close();
 	st.close();
 %>
-
