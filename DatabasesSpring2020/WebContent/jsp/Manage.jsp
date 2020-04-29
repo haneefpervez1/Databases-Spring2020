@@ -6,7 +6,7 @@
     <title>Manage</title>
     <link rel="stylesheet" type="text/css" href="../css/styles.css">
     <script>
-        function userFieldEmpty() {
+        function manageUserFieldEmpty() {
             if (document.getElementById('username').value === "") {
                 alert("Error: Username Missing");
                 return true;
@@ -15,30 +15,45 @@
         }
 
         function addCustomer() {
-            if (userFieldEmpty()) return;
+            if (manageUserFieldEmpty()) return;
             let form = document.getElementById('manageUserForm');
             form.action = 'addCustomer.jsp';
             form.submit();
         }
 
         function addRepresentative() {
-            if (userFieldEmpty()) return;
+            if (manageUserFieldEmpty()) return;
             let form = document.getElementById('manageUserForm');
             form.action = 'addRepresentative.jsp';
             form.submit();
         }
 
         function editUser() {
-            if (userFieldEmpty()) return;
+            if (manageUserFieldEmpty()) return;
             let form = document.getElementById('manageUserForm');
             form.action = 'editUser.jsp';
             form.submit();
         }
 
         function deleteUser() {
-            if (userFieldEmpty()) return;
+            if (manageUserFieldEmpty()) return;
             let form = document.getElementById('manageUserForm');
             form.action = 'deleteUser.jsp';
+            form.submit();
+        }
+
+        function searchResUserFieldEmpty() {
+            if (document.getElementById('searchResUsername').value === "") {
+                alert("Error: Username Missing");
+                return true;
+            }
+            return false;
+        }
+
+        function searchResByUsername() {
+            if (searchResUserFieldEmpty()) return;
+            let form = document.getElementById('searchResByUsernameForm');
+            form.action = 'searchResByUsername.jsp';
             form.submit();
         }
     </script>
@@ -71,17 +86,15 @@
                 Statement st = con.createStatement();
                 ResultSet rs;
                 rs = st.executeQuery("SELECT DISTINCT MONTH(res_date) FROM Reservations");
-                while (rs.next()){ %>
+                while (rs.next()) { %>
                     <option value="<%=rs.getString(1)%>"><%=Month.of(Integer.parseInt(rs.getString(1))).name()%></option>
-                <%}
+                <% }
                 con.close();
                 st.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
             %>
-
-
         </select>
         <input type="submit" value="View">
     </form>
@@ -90,26 +103,53 @@
 <!-- Produce a list of reservations by transit line and train number or by customer name -->
 <div class="col">
     <h3>Search Reservations</h3>
-    <form>
+    <form action="searchResByLineAndNumber.jsp" method="post">
         <label for="transitLineReservations">Transit Line:</label>
         <select id="transitLineReservations">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
+        <%
+            try {
+                Class.forName("com.mysql.jdbc.Driver").newInstance();
+                Connection con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
+                Statement st = con.createStatement();
+                ResultSet rs;
+                rs = st.executeQuery("SELECT transitlinename FROM Transit_Line");
+                while (rs.next()) {%>
+                    <option><%=rs.getString(1)%></option>
+                <% }
+                con.close();
+                st.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+                %>
         </select>
+
         <label for="trainNumber">Train Number:</label>
         <select id="trainNumber">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
+            <%
+                try {
+                    Class.forName("com.mysql.jdbc.Driver").newInstance();
+                    Connection con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
+                    Statement st = con.createStatement();
+                    ResultSet rs;
+                    rs = st.executeQuery("SELECT tid FROM Trains");
+                    while (rs.next()) {%>
+            <option><%=rs.getString(1)%></option>
+            <% }
+                con.close();
+                st.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            %>
         </select>
-        <button>Search</button>
+        <input type="submit" value="Search">
     </form>
     <br>
-    <form>
-        <label for="customerUsernameReservations">Customer Username:</label>
-        <input type="text" id="customerUsernameReservations">
-        <button>Search</button>
+    <form id="searchResByUsernameForm" method="post">
+        <label for="searchResUsername">Customer Username:</label>
+        <input type="text" id="searchResUsername" name="username">
+        <input type="button" onclick="searchResByUsername()" value="Search">
     </form>
 </div>
 

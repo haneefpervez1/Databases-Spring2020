@@ -16,7 +16,7 @@
         ResultSet rs;
         rs = st.executeQuery("SELECT * FROM Users WHERE username='" + username + "'");
         if (!rs.next()){
-            out.println("Error: User '" + username + "' Not Found <br><a href='Manage.jsp'>Admin Panel</a>");
+            out.println("Error: User '" + username + "' Not Found<br><a href='Manage.jsp'>Admin Panel</a>");
             return;
         }
 
