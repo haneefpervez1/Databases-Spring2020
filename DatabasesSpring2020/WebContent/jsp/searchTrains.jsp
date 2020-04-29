@@ -117,7 +117,7 @@ while (rs.next()) {
 				<td><%= totalTravel %></td>
 				<td><%= fare_amount %></td>
 				<td>
-					<a href="MakeReservation.jsp?line=${transitlinename}&origin=${origin}&dest=${dest}&dept_time=${dept_time}&schedId=${schedId}&fare=${fare}">Reserve</a>
+					<a href="MakeReservation.jsp?line=${transitlinename}&origin=${orgn}&dest=${dst}&dept_time=${dept_time}&schedId=${schedId}&fare=${fare}">Reserve</a>
 				</td>
 			</tr>
 <% } %>	
