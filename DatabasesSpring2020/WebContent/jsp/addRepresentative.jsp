@@ -16,17 +16,19 @@
         ResultSet rs;
         rs = st.executeQuery("SELECT * FROM Users WHERE username='" + username + "'");
         if (rs.next()) {
-            out.println("Username '" + username + "' Already Exists <br><a href='Manage.jsp'>Admin Panel</a>");
+            out.println("Username '" + username + "' Already Exists");
             return;
         }
 
         st.executeUpdate("INSERT INTO Users (Username, role) VALUES ('" + username + "', 'Customer Representative')");
         con.close();
         st.close();
-        out.println("New Customer Representative Successfully Added: " + username + "<br><a href='Manage.jsp'>Admin Panel</a>");
+        out.println("New Customer Representative Successfully Created: '" + username + "' (default password is blank)");
     } catch (Exception e) {
        e.printStackTrace();
     }
 %>
+<br>
+<a href='Manage.jsp'>Admin Panel</a>
 </body>
 </html>

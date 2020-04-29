@@ -22,7 +22,7 @@
             ResultSet rs;
             rs = st.executeQuery("SELECT * FROM Users WHERE username='" + new_username + "'");
             if (rs.next()) {
-                out.println("Error: User '" + new_username + "' Already Exists <br><a href='Manage.jsp'>Admin Panel</a>");
+                out.println("Error: User '" + new_username + "' Already Exists");
                 return;
             }
         }
@@ -57,11 +57,11 @@
             out.println("Customer Successfully Modified: '" + old_username + "'");
         }
 
-        out.println("<br><a href='Manage.jsp'>Admin Panel</a>");
-
     } catch (Exception e) {
         e.printStackTrace();
     }
 %>
+<br>
+<a href='Manage.jsp'>Admin Panel</a>
 </body>
 </html>

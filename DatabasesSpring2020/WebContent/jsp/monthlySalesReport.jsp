@@ -25,6 +25,7 @@
         e.printStackTrace();
     }
 %>
-<br><a href='Manage.jsp'>Admin Panel</a>
+<br>
+<a href='Manage.jsp'>Admin Panel</a>
 </body>
 </html>

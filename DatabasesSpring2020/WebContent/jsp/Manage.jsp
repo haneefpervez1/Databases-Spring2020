@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Manage</title>
+    <title>Admin Panel</title>
     <link rel="stylesheet" type="text/css" href="../css/styles.css">
     <script>
         function manageUserFieldEmpty() {
@@ -65,11 +65,11 @@
     <h3>Manage User</h3>
     <form id="manageUserForm" method="post">
         <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username" required="required">
-        <input type="button" onclick="addCustomer()" value="Add As Customer">
-        <input type="button" onclick="addRepresentative()" value="Add As Representative">
-        <input type="button" onclick="editUser()" value="Edit">
-        <input type="button" onclick="deleteUser()" value="Delete">
+        <input type="text" id="username" name="username">
+        <input type="button" onclick="addCustomer()" value="New Customer">
+        <input type="button" onclick="addRepresentative()" value="New Representative">
+        <input type="button" onclick="editUser()" value="Edit User">
+        <input type="button" onclick="deleteUser()" value="Delete User">
     </form>
 </div>
 
