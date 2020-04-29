@@ -14,7 +14,7 @@
         Class.forName("com.mysql.jdbc.Driver").newInstance();
         Connection con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
         Statement st = con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT * FROM (SELECT * FROM Reservations JOIN Train_Schedule USING (scheduleID)) WHERE transitlinename='" + line + "' AND tid='" + train + "'");
+        ResultSet rs = st.executeQuery("SELECT * FROM Reservations r JOIN Train_Schedule ts ON r.scheduleID=ts.scheduleID WHERE transitlinename='" + line + "' AND tid=" + train);
         %>
 Transit Line: <%=line%>
 <br>
