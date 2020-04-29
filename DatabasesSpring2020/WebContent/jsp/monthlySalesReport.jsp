@@ -21,10 +21,10 @@
 
         con.close();
         st.close();
-        out.println("<br><a href='Manage.jsp'>Admin Panel</a>");
     } catch (Exception e) {
         e.printStackTrace();
     }
 %>
+<br><a href='Manage.jsp'>Admin Panel</a>
 </body>
 </html>

@@ -105,16 +105,16 @@
     <h3>Search Reservations</h3>
     <form action="searchResByLineAndNumber.jsp" method="post">
         <label for="transitLineReservations">Transit Line:</label>
-        <select id="transitLineReservations">
+        <select id="transitLineReservations" name="line">
         <%
             try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
                 Connection con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
                 Statement st = con.createStatement();
                 ResultSet rs;
-                rs = st.executeQuery("SELECT transitlinename FROM Transit_Line");
+                rs = st.executeQuery("SELECT DISTINCT transitlinename FROM Reservations JOIN Train_Schedule USING (scheduleID)");
                 while (rs.next()) {%>
-                    <option><%=rs.getString(1)%></option>
+                    <option value="<%=rs.getString(1)%>"><%=rs.getString(1)%></option>
                 <% }
                 con.close();
                 st.close();
@@ -125,16 +125,16 @@
         </select>
 
         <label for="trainNumber">Train Number:</label>
-        <select id="trainNumber">
+        <select id="trainNumber" name="train">
             <%
                 try {
                     Class.forName("com.mysql.jdbc.Driver").newInstance();
                     Connection con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
                     Statement st = con.createStatement();
                     ResultSet rs;
-                    rs = st.executeQuery("SELECT tid FROM Trains");
+                    rs = st.executeQuery("SELECT DISTINCT tid FROM Reservations JOIN Train_Schedule USING (scheduleID) ORDER BY CAST(tid as SIGNED) ");
                     while (rs.next()) {%>
-            <option><%=rs.getString(1)%></option>
+            <option value="<%=rs.getString(1)%>"><%=rs.getString(1)%></option>
             <% }
                 con.close();
                 st.close();

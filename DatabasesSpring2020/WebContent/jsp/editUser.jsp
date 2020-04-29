@@ -22,7 +22,6 @@
         }
 
         function editRepresentative() {
-            if (stateFieldIsInvalid()) return;
             let form = document.getElementById('editRepresentativeForm');
             form.action = 'editRepresentative.jsp';
             form.submit();
@@ -83,12 +82,16 @@
         <input type="text" id="email" name="email" value="<%=email%>">
         <br>
 
-        <input style="display:none" type="text" name="username" value="<%=username%>">
+        <input style="display:none" type="text" name="old_username" value="<%=username%>">
+
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="new_username" value="<%=username%>">
+        <br>
 
         <label for="password">Password:</label>
         <input type="text" id="password" name="password" value="<%=password%>">
         <br>
-        <input type="submit" onclick="editCustomer()" value="Save">
+        <input type="button" onclick="editCustomer()" value="Save">
     </form>
 <% }
     String ssn = rs.getString("ssn") == null ? "" : rs.getString("ssn");
@@ -105,12 +108,16 @@
         <input type="text" id="firstname" name="firstname" value="<%=first_name%>">
         <br>
 
-        <input style="display:none" type="text" name="username" value="<%=username%>">
+        <input style="display:none" type="text" name="old_username" value="<%=username%>">
+
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="new_username" value="<%=username%>">
+        <br>
 
         <label for="password">Password:</label>
         <input type="text" id="password" name="password" value="<%=password%>">
         <br>
-        <input type="submit" onclick="editRepresentative()" value="Save">
+        <input type="button" onclick="editRepresentative()" value="Save">
     </form>
 <% }
     con.close();
