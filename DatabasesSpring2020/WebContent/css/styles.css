@@ -21,3 +21,9 @@ body {
 	margin: 24px;
 	align-content: center;
 }
+
+table, td {
+	text-align: center;
+	border: 1px solid black;
+	padding: 8px;
+}

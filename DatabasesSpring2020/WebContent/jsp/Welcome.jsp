@@ -12,7 +12,7 @@ Welcome <%=session.getAttribute("user")%>
 	System.out.println(role);
 	if (role.equals("Customer")) {
 %>
-		<a>My Reservations</a>
+		<a href="viewReservations.jsp">My Reservations</a>
 		<a href="ViewTrainSchedules.jsp">View Train Schedules</a>
 		<a href="sendQuestion.jsp">Ask a question</a>
 		<%

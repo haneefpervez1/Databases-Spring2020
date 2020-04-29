@@ -9,4 +9,6 @@
 	int rs;
 	rs = st.executeUpdate("INSERT INTO Messages (sender, message) VALUES ('" + username + "', '" + question + "')");
 	response.sendRedirect("sendQuestion.jsp");
+	con.close();
+	st.close();
 %>

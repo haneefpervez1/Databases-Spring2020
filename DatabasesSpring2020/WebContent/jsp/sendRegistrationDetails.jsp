@@ -11,4 +11,6 @@
 	session.setAttribute("user", username);
 	session.setAttribute("role", role);
 	response.sendRedirect("Welcome.jsp");
+	con.close();
+	st.close();
 %>
