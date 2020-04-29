@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+<%@ page import = "java.sql.*, java.time.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,14 +61,29 @@
 <!-- Obtain a sales report for a particular month (total revenue per month) -->
 <div class="col">
     <h3>Monthly Sales Report</h3>
-    <form>
-        <label for="monthlySalesReport">Month:</label>
-        <select id="monthlySalesReport">
-            <option value="april">April</option>
-            <option value="march">March</option>
-            <option value="february">February</option>
+    <form action="monthlySalesReport.jsp" method="post">
+        <label for="month">Month:</label>
+        <select id="month" name="month">
+            <%
+            try {
+                Class.forName("com.mysql.jdbc.Driver").newInstance();
+                Connection con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
+                Statement st = con.createStatement();
+                ResultSet rs;
+                rs = st.executeQuery("SELECT DISTINCT MONTH(res_date) FROM Reservations");
+                while (rs.next()){ %>
+                    <option value="<%=rs.getString(1)%>"><%=Month.of(Integer.parseInt(rs.getString(1))).name()%></option>
+                <%}
+                con.close();
+                st.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            %>
+
+
         </select>
-        <button>View</button>
+        <input type="submit" value="View">
     </form>
 </div>
 
