@@ -47,6 +47,8 @@
         } else {
             out.println("Customer Representative Successfully Modified: '" + old_username + "'");
         }
+    } catch (DataTruncation trunc) {
+        out.println("Error: " + trunc.getMessage());
     } catch (Exception e) {
         e.printStackTrace();
     }

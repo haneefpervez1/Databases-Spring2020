@@ -25,6 +25,8 @@
         con.close();
         st.close();
         out.println("New Customer Successfully Created: '" + username + "' (default password is blank)");
+    } catch (DataTruncation trunc) {
+        out.println("Error: " + trunc.getMessage());
     } catch (Exception e) {
         e.printStackTrace();
     }
