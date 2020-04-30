@@ -15,11 +15,6 @@
     <form class="col" action="sendRegistrationDetails.jsp" method="POST"> 
             <input class="field" type="text" id="username" name="username" placeholder="Username">
             <input class="field" type="text" id="password" name="password" placeholder="Password">
-            <select id="role" name="role">
-            	<option value="Customer">Customer</option>
-            	<option value="Customer Representative">Customer Representative</option>
-            	<option value="Manager">Manager</option>
-            </select>
             <input type="submit" value="Submit"/>
     </form>
 </body>
