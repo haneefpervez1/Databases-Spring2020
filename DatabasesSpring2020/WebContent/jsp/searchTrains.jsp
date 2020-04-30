@@ -100,12 +100,12 @@ rs = st.executeQuery(final_query);
 while (rs.next()) {
 	int schedId = rs.getInt("scheduleID");
 	String transitlinename = rs.getString("transitlinename");
-	String orgn = map.get(transitlinename);
+	String originString = map.get(transitlinename);
 	int tid = rs.getInt("tid");
 	int avail_seat = rs.getInt("avail_seats");
-	//int orgn = rs.getInt("origin_station");
-	//int dst = rs.getInt("dest_station");
-	String dst = mapDest.get(transitlinename);
+	int orgn = rs.getInt("origin_station");
+	int dst = rs.getInt("dest_station");
+	String destString = mapDest.get(transitlinename);
 	int numStops = rs.getInt("NumberOfStops"); // changed
 	java.sql.Timestamp dept_time = rs.getTimestamp("dep_datetime");
 	java.sql.Timestamp ariv_time = rs.getTimestamp("arrival_datetime");
@@ -116,6 +116,8 @@ while (rs.next()) {
 	request.setAttribute("transitlinename", transitlinename);
 	request.setAttribute("orgn", orgn);
 	request.setAttribute("dst", dst);
+	request.setAttribute("originString", originString);
+	request.setAttribute("destString", destString);
 	request.setAttribute("dept_time", dept_time);
 	request.setAttribute("schedId", schedId);
 	request.setAttribute("fare", fare);
@@ -125,8 +127,8 @@ while (rs.next()) {
 				<td><%= transitlinename %></td>
 				<td><%= tid %></td>
 				<td><%= avail_seat %></td>
-				<td><%= orgn %></td>
-				<td><%= dst %></td>
+				<td><%= originString %></td>
+				<td><%= destString %></td>
 				<td>
 					<a href="showStops.jsp?schedId=${schedId}"><%= numStops %></a>
 				</td>
@@ -135,7 +137,7 @@ while (rs.next()) {
 				<td><%= totalTravel %></td>
 				<td><%= fare_amount %></td>
 				<td>
-					<a href="MakeReservation.jsp?line=${transitlinename}&origin=${orgn}&dest=${dst}&dept_time=${dept_time}&schedId=${schedId}&fare=${fare}">Reserve</a>
+					<a href="MakeReservation.jsp?line=${transitlinename}&origin=${orgn}&dest=${dst}&dept_time=${dept_time}&schedId=${schedId}&fare=${fare}&originString=${originString}&destString=${destString}">Reserve</a>
 				</td>
 			</tr>
 <% } %>	

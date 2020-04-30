@@ -16,6 +16,8 @@
 		String dept_time = (String)request.getParameter("dept_time");
 		String schedId = (String)request.getParameter("schedId");
 		String fare = (String)request.getParameter("fare");
+		String originString = (String)request.getParameter("originString");
+		String destString = (String)request.getParameter("destString");
 		request.setAttribute("transitline", transitline);
 		request.setAttribute("origin", origin);
 		request.setAttribute("dest", dest);
@@ -32,8 +34,8 @@
 		</tr>
 		<tr>
 			<td><%= transitline %></td>
-			<td><%= origin %></td>
-			<td><%= dest %></td>
+			<td><%= originString %></td>
+			<td><%= destString %></td>
 			<td><%= dept_time %></td>
 		</tr>
 	</table>

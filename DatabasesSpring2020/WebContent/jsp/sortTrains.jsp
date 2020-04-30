@@ -53,8 +53,10 @@ while (rs.next()) {
 	String transitlinename = rs.getString("transitlinename");
 	int tid = rs.getInt("tid");
 	int avail_seat = rs.getInt("avail_seats");
-	String origin = map.get(transitlinename);
-	String dest = mapDest.get(transitlinename);
+	String originString = map.get(transitlinename);
+	int origin = rs.getInt("origin_station");
+	String destString = mapDest.get(transitlinename);
+	int dest = rs.getInt("dest_station");
 	int numStops = rs.getInt("NumberOfStops"); // changed
 	java.sql.Timestamp dept_time = rs.getTimestamp("dep_datetime");
 	java.sql.Timestamp ariv_time = rs.getTimestamp("arrival_datetime");
@@ -65,6 +67,8 @@ while (rs.next()) {
 	request.setAttribute("transitlinename", transitlinename);
 	request.setAttribute("origin", origin);
 	request.setAttribute("dest", dest);
+	request.setAttribute("originString", originString);
+	request.setAttribute("destString", destString);
 	request.setAttribute("dept_time", dept_time);
 	request.setAttribute("schedId", schedId);
 	request.setAttribute("fare", fare);
@@ -74,8 +78,8 @@ while (rs.next()) {
 				<td><%= transitlinename %></td>
 				<td><%= tid %></td>
 				<td><%= avail_seat %></td>
-				<td><%= origin %></td>
-				<td><%= dest %></td>
+				<td><%= originString %></td>
+				<td><%= destString %></td>
 				<td>
 					<a href="showStops.jsp?schedId=${schedId}"><%= numStops %></a>
 				</td>
@@ -84,7 +88,7 @@ while (rs.next()) {
 				<td><%= totalTravel %></td>
 				<td><%= fare_amount %></td>
 				<td>
-					<a href="MakeReservation.jsp?line=${transitlinename}&origin=${origin}&dest=${dest}&dept_time=${dept_time}&schedId=${schedId}&fare=${fare}">Reserve</a>
+					<a href="MakeReservation.jsp?line=${transitlinename}&origin=${origin}&dest=${dest}&dept_time=${dept_time}&schedId=${schedId}&fare=${fare}&originString=${originString}&destString=${destString}">Reserve</a>
 				</td>
 			</tr>
 <% } %>	
