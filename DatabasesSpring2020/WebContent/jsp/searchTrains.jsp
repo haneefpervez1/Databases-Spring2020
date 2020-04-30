@@ -32,7 +32,8 @@ System.out.println(origin + ", " + dest + ", " + date);
 Class.forName("com.mysql.jdbc.Driver").newInstance();
 Connection con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
 Statement st = con.createStatement();
-
+String originquery = "SELECT ts.transitlinename, st.name AS OriginStation FROM Train_Schedule AS ts, Transit_Line AS tl, Stops AS s, Stations AS st WHERE ts.transitlinename=tl.transitlinename AND s.scheduleID=ts.scheduleID AND tl.origin_station=st.sid GROUP BY ts.scheduleID";
+String destquery = "SELECT ts.transitlinename, st.name AS DestStation FROM Train_Schedule AS ts, Transit_Line AS tl, Stops AS s, Stations AS st WHERE ts.transitlinename=tl.transitlinename AND s.scheduleID=ts.scheduleID AND tl.dest_station=st.sid GROUP BY ts.scheduleID";
 String query = "SELECT *, COUNT(s.sid) AS NumberOfStops FROM Train_Schedule AS ts, Transit_Line AS tl, Stops AS s WHERE ts.transitlinename=tl.transitlinename AND s.scheduleID=ts.scheduleID";
 String use_origin = " AND tl.origin_station=(SELECT sid FROM Stations WHERE name=\""+origin+"\")";
 String use_dest = " AND tl.dest_station=(SELECT sid FROM Stations WHERE name=\""+dest+"\")";
