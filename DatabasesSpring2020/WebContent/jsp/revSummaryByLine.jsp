@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../css/styles.css">
 </head>
 <body>
-<a href='Manage.jsp'>Back To Admin Panel</a><br>
+<a class="admin_back_link" href='Manage.jsp'>Back To Admin Panel</a><br>
 <%
     String line = request.getParameter("line");
     out.println("<h3>Transit Line: " + line + "</h3>");

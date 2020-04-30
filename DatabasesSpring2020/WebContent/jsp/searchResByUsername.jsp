@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../css/styles.css">
 </head>
 <body>
-<a href='Manage.jsp'>Back To Admin Panel</a><br>
+<a class="admin_back_link" href='Manage.jsp'>Back To Admin Panel</a><br>
 <%
     try {
         String username = request.getParameter("username");
@@ -27,10 +27,12 @@
             st.close();
             return;
         } else { %>
-            <h3><%=username%>'s Reservations:</h3>
+            Customer: '<%=username%>'
+            <br>
+            <h3>Reservations:</h3>
             <table>
                 <tr>
-                    <th>Reservation Number</th>
+                    <th>Reservation #</th>
                     <th>Date Created</th>
                     <th>Departure Date/Time</th>
                     <th>Schedule ID</th>

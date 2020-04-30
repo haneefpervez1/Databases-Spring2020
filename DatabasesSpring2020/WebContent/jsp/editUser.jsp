@@ -29,7 +29,7 @@
     </script>
 </head>
 <body>
-<a href='Manage.jsp'>Back To Admin Panel</a><br>
+<a class="admin_back_link" href='Manage.jsp'>Back To Admin Panel</a><br>
 <%
     try {
     String username = request.getParameter("username");
