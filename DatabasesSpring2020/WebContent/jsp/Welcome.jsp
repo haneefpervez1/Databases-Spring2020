@@ -18,7 +18,7 @@ Welcome <%=session.getAttribute("user")%>
 		<%
     } else if (role.equals("Customer Representative")){
 %>
-		<p>Customer Rep screen</p>
+		<a href="respondToCustomerQuestion.jsp">Respond to Customer Questions</a>
 <%
     } else if (role.equals("Manager")) {
 		response.sendRedirect("Manage.jsp");
