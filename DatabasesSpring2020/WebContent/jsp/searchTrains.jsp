@@ -127,7 +127,9 @@ while (rs.next()) {
 				<td><%= avail_seat %></td>
 				<td><%= orgn %></td>
 				<td><%= dst %></td>
-				<td><%= numStops %></td>
+				<td>
+					<a href="showStops.jsp?schedId=${schedId}"><%= numStops %></a>
+				</td>
 				<td><%= dept_time %></td>
 				<td><%= ariv_time %></td>
 				<td><%= totalTravel %></td>
@@ -141,7 +143,6 @@ while (rs.next()) {
 </body>
 </html>
 <%
-
 	con.close();
 	st.close();
 %>
