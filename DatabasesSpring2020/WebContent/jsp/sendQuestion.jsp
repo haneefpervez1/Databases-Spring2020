@@ -14,6 +14,6 @@
 		<input type="submit" value="Submit"/>
 	</form>
 	<a href="browseQuestions.jsp">Browse Questions</a>
-	<a href="">Search Questions</a>
+	<a href="searchQuestions.jsp">Search Questions</a>
 </body>
 </html>
