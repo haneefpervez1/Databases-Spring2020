@@ -254,7 +254,7 @@
         }
     %>
 
-Customer Who Generated Most Revenue: <%=bestCustomer%>
+Customer Who Generated Most Revenue: '<%=bestCustomer%>'
 </div>
 
 <!-- Produce a list of the 5 most active transit lines (most reservations per month) -->
