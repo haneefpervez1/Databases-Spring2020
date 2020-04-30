@@ -25,12 +25,11 @@
 	</tr>
    <% 
 String sort = request.getParameter("sort");
-System.out.println(sort);
+System.out.println("Sort by: "+sort);
 Class.forName("com.mysql.jdbc.Driver").newInstance();
 Connection con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
 Statement st = con.createStatement();
 String query = "SELECT *, COUNT(s.sid) AS NumberOfStops FROM Train_Schedule AS ts, Transit_Line AS tl, Stops AS s WHERE ts.transitlinename=tl.transitlinename AND s.scheduleID=ts.scheduleID GROUP BY ts.scheduleID ORDER BY ";
-String query2 = "SELECT Transit_Line.transitlinename, Stations.name, stop_number, depart_time, arrival_time FROM Stops, Stations, Train_Schedule, Trains, stop_at, Transit_Line WHERE Train_Schedule.tid = Trains.tid AND Trains.tid = stop_at.tid AND stop_at.sid=Stations.sid AND Stops.sid=Stations.sid AND Stops.scheduleID=Train_Schedule.scheduleID AND Transit_Line.transitlinename=Train_Schedule.transitlinename";
 
 ResultSet rs;
 rs = st.executeQuery(query + sort + ";");
@@ -62,7 +61,9 @@ while (rs.next()) {
 				<td><%= avail_seat %></td>
 				<td><%= origin %></td>
 				<td><%= dest %></td>
-				<td><%= numStops %>
+				<td>
+					<a href="showStops.jsp?schedId=${schedId}"><%= numStops %></a>
+				</td>
 				<td><%= dept_time %></td>
 				<td><%= ariv_time %></td>
 				<td><%= totalTravel %></td>
@@ -76,15 +77,6 @@ while (rs.next()) {
 </body>
 </html>
 <%
-	rs.close();
-	ResultSet rs2;
-	rs2 = st.executeQuery(query2 + ";");
-	if (rs2.next()) {
-		System.out.println("Test");
-	}
-	else {
-		System.out.println("Failed");
-	}
 	con.close();
 	st.close();
 %>
