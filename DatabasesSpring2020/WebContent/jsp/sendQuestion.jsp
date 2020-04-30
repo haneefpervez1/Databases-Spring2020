@@ -13,7 +13,7 @@
 		<input class="field" type="text" id="question" name="question" placeholder="Enter question here...">
 		<input type="submit" value="Submit"/>
 	</form>
-	<a href="">Browse Questions</a>
+	<a href="browseQuestions.jsp">Browse Questions</a>
 	<a href="">Search Questions</a>
 </body>
 </html>
