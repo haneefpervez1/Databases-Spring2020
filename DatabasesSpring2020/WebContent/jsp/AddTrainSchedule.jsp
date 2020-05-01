@@ -16,38 +16,29 @@
 	Connection c = db.getConnection();
 	
     String newTransitLineName = (String)request.getParameter("transitlinename");
-    String newTrain = (String)request.getParameter("train");
-    String newOrigin = (String)request.getParameter("origin");
-    String newDestination = (String)request.getParameter("destination");
-    String newAvailSeats = (String)request.getParameter("availseats");
-    String newStops = (String)request.getParameter("stops");
+    String newTrain = (String)request.getParameter("tid");
+    String newAvailSeats = (String)request.getParameter("avail_seats");
     String newArrival = (String)request.getParameter("arrival_datetime");
     String newDeparture = (String)request.getParameter("dep_datetime");
-    String newTravelTime = (String)request.getParameter("traveltime");
-		String newFare = (String)request.getParameter("fare");
+    String newTravelTime = (String)request.getParameter("total travel time");
+
+    
     request.setAttribute("transitlinename", transitlinename);
-    request.setAttribute("train", train);
-    request.setAttribute("origin", origin);
-    request.setAttribute("destination", destination);
-    request.setAttribute("availseats", availseats);
-    request.setAttribute("stops", stops);
+    request.setAttribute("tid", tid);
+    request.setAttribute("avail_seats", avail_seats);
     request.setAttribute("arrival_datetime", arrival_datetime);
     request.setAttribute("dep_datetime", dep_datetime);
-    request.setAttribute("traveltime", traveltime);
-    request.setAttribute("fare", fare);
+    request.setAttribute("total travel time", total travel time);
+ 
     
     String i = "INSERT INTO Train_Schedule(name)" + "VALUES (?)";
     PreparedStatement p = c.prepareStatement(i);
     p.setString(1, transitlinename);
-    p.setString(2, train);
-    p.setString(3, origin);
-    p.setString(4, destination);
-    p.setString(5, availseats);
-    p.setString(6, stops);
-    p.setString(7, arrival_datetime);
-    p.setString(8, dep_datetime);
-    p.setString(9, traveltime);
-    p.setString(10, fare);
+    p.setString(2, tid);
+    p.setString(3, availseats);
+    p.setString(4, arrival_datetime);
+    p.setString(5, dep_datetime);
+    p.setString(6, total travel time);
     p.executeUpdate();
     
     c.close();
