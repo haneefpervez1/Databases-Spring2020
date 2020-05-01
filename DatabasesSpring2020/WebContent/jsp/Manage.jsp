@@ -241,7 +241,7 @@
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Connection con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT username, MAX(rev) FROM (SELECT username, SUM(total_fare + booking_fee) rev FROM Reservations GROUP BY username) t1");
+            ResultSet rs = st.executeQuery("SELECT username FROM (SELECT username, SUM(total_fare + booking_fee) rev FROM Reservations GROUP BY username ORDER BY rev DESC LIMIT 1) t1");
 
             if (rs.next()) {
                 bestCustomer = rs.getString("username");
