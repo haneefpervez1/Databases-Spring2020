@@ -3,6 +3,7 @@
     <%@ page import = "java.sql.*" %>
     <%@ page import = "java.text.SimpleDateFormat" %>
 	<%@ page import = "java.util.Date"%> 
+	<%@ page import = "java.util.*" %>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -31,6 +32,20 @@
 	Class.forName("com.mysql.jdbc.Driver").newInstance();
 	Connection con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
 	Statement st = con.createStatement();
+	String originquery = "SELECT ts.scheduleID, st.name AS OriginStation FROM Train_Schedule AS ts, Transit_Line AS tl, Stops AS s, Stations AS st WHERE ts.transitlinename=tl.transitlinename AND s.scheduleID=ts.scheduleID AND tl.origin_station=st.sid GROUP BY ts.scheduleID";
+	ResultSet originrs = st.executeQuery(originquery);
+	HashMap<Integer, String> map = new HashMap();
+	while (originrs.next()) {
+		map.put(originrs.getInt("scheduleID"), originrs.getString("OriginStation"));
+	}
+	originrs.close();
+	String destquery = "SELECT ts.scheduleID, st.name AS DestStation FROM Train_Schedule AS ts, Transit_Line AS tl, Stops AS s, Stations AS st WHERE ts.transitlinename=tl.transitlinename AND s.scheduleID=ts.scheduleID AND tl.dest_station=st.sid GROUP BY ts.scheduleID";
+	ResultSet destrs = st.executeQuery(destquery);
+	HashMap<Integer, String> mapDest = new HashMap();
+	while (destrs.next()) {
+		mapDest.put(destrs.getInt("scheduleID"), destrs.getString("DestStation"));
+	}
+	destrs.close();
 	String query = "SELECT * FROM Reservations AS r, Train_Schedule AS ts WHERE r.scheduleID=ts.scheduleID AND username = \"" + username + "\";";
 	ResultSet rs;
 	rs = st.executeQuery(query);
@@ -46,6 +61,8 @@
 		float total_fare = rs.getFloat("total_fare");
 		float booking_fee = rs.getFloat("booking_fee");
 		String cust_rep = rs.getString("cust_rep");
+		String originString = map.get(schedId);
+		String destString = mapDest.get(schedId);
 		if(cust_rep == null)
 		{
 			cust_rep = "N/A";
@@ -69,9 +86,9 @@
 					<td><%= username %></td>
 					<td><%= total_fare %></td>
 					<td><%= cust_rep %></td>
-					<td><%= origin %>
+					<td><%= originString %>
 					<td><%= dept_time %></td>
-					<td><%= dest %></td>
+					<td><%= destString %></td>
 					<%
 						if (comp < 0) {
 							%>
