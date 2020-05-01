@@ -43,7 +43,7 @@
     request.setAttribute("avail_seats", avail_seats);
     request.setAttribute("arrival_datetime", arrival_datetime);
     request.setAttribute("dep_datetime", dep_datetime);
-    request.setAttribute("total_travel time", total_travel_time);
+    request.setAttribute("total_travel_time", total_travel_time);
  
     String i = "INSERT INTO Train(name)" + "VALUES (?)";
     PreparedStatement p = c.prepareStatement(i);
@@ -69,7 +69,7 @@
     p.setString(3, availseats);
     p.setString(4, arrival_datetime);
     p.setString(5, dep_datetime);
-    p.setString(6, total travel time);
+    p.setString(6, total_travel_time);
     p.executeUpdate();
     
     c.close();
