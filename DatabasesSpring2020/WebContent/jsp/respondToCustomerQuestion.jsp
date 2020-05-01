@@ -8,6 +8,7 @@
 <title>Respond to Customer Question</title>
 </head>
 <body>
+	<a href="Welcome.jsp">Back to Home</a>
 	<h3>Respond to Customer Question</h3>
 	<%
 		String username = (String)session.getAttribute("user");
