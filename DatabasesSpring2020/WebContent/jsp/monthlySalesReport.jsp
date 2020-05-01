@@ -17,7 +17,8 @@
 
         ResultSet rs = st.executeQuery("SELECT IFNULL(SUM(total_fare + booking_fee), '0.00') FROM Reservations WHERE MONTH(res_date)="+month);
         if (rs.next()) {
-            out.println("<h3>" + Month.of(month).name() + "<br>Total Sales: $" + rs.getString(1) + "</h3>");
+            out.println("<h3>" + Month.of(month).name() + "</h3>");
+            out.println("<h3>Total Sales: $" + rs.getString(1) + "</h3>");
         }
 
         con.close();
