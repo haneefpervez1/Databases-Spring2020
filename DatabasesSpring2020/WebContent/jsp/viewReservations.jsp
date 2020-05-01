@@ -38,9 +38,6 @@
 		int res_num = rs.getInt("res_num");
 		java.sql.Date date_made = rs.getDate("res_date");
 		java.sql.Timestamp dept_time = rs.getTimestamp("dep_datetime");
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
-	    Date date = new Date();  
-	    System.out.println(formatter.format(date));
 		int schedId = rs.getInt("scheduleID");
 		int origin = rs.getInt("origin_station");
 		int dest = rs.getInt("dest_station");
@@ -49,7 +46,17 @@
 		float total_fare = rs.getFloat("total_fare");
 		float booking_fee = rs.getFloat("booking_fee");
 		String cust_rep = rs.getString("cust_rep");
+		if(cust_rep == null)
+		{
+			cust_rep = "N/A";
+		}
 		java.sql.Timestamp ariv_time = rs.getTimestamp("arrival_datetime");
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+	    Date date = new Date();  
+	    int comp = ariv_time.compareTo(date);
+	    if (comp < 0) {
+	    	boolean delay = true;
+	    }
 		String tlname = rs.getString("transitlinename");
 		int tid = rs.getInt("tid");
 		int avail_seat = rs.getInt("avail_seats");
@@ -65,14 +72,24 @@
 					<td><%= origin %>
 					<td><%= dept_time %></td>
 					<td><%= dest %></td>
-					<td><%= ariv_time %></td>
+					<%
+						if (comp < 0) {
+							%>
+							<td style="color: red"><%= ariv_time %></td>
+							<%
+						} else {
+							%>
+							<td><%= ariv_time %></td>
+							<%
+						}
+					%>
 					<td>
 						<a href="deleteReservation.jsp?res=${res_num}">Delete</a>
 					</td>
 				</tr>
 <% } %>	
 		</table>
-	
+		<p>Red = train has been delayed</p>
 </body>
 </html>
 <%
