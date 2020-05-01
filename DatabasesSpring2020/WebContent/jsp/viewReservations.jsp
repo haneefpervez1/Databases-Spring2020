@@ -21,6 +21,7 @@
 		<th>Date Made</th>
 		<th>Username</th>
 		<th>Total Fare</th>
+		<th>Seat</th>
 		<th>Customer Representative</th>
 		<th>Origin</th>
 		<th>Departure Time</th>
@@ -85,6 +86,7 @@
 					<td><%= date_made %></td>
 					<td><%= username %></td>
 					<td><%= total_fare %></td>
+					<td><%= seat_num %>
 					<td><%= cust_rep %></td>
 					<td><%= originString %>
 					<td><%= dept_time %></td>

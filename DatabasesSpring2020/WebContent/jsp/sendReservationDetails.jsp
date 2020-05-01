@@ -40,9 +40,10 @@
 		String schedId = request.getParameter("schedId");
 		String origin = request.getParameter("origin");
 		String dest = request.getParameter("dest");
+		String seat = request.getParameter("seat");
 		double booking_fee = result * 0.5;
 		int rs;
-    	rs = st.executeUpdate("INSERT INTO Reservations(username, res_date, dep_datetime, scheduleID, origin_station, dest_station, class, seat_num, total_fare, booking_fee, cust_rep) values ('" + username + "', CURRENT_TIMESTAMP(), '" + dep_datetime + "', " + schedId + ", " + origin + ", " + dest + ", '" + ticket_class + "', 1, " + result + ", " + booking_fee +", '" + rep + "')");
+    	rs = st.executeUpdate("INSERT INTO Reservations(username, res_date, dep_datetime, scheduleID, origin_station, dest_station, class, seat_num, total_fare, booking_fee, cust_rep) values ('" + username + "', CURRENT_TIMESTAMP(), '" + dep_datetime + "', " + schedId + ", " + origin + ", " + dest + ", '" + ticket_class + "', " + seat + ", " + result + ", " + booking_fee +", '" + rep + "');");
     	con.close();
     	st.close();
     %>
