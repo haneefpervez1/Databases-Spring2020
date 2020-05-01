@@ -24,40 +24,36 @@
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery("SELECT * FROM Reservations r JOIN Train_Schedule ts ON r.scheduleID=ts.scheduleID WHERE transitlinename='" + line + "' AND tid=" + train);
         if (!rs.next()) {
-            out.println("No reservations found for Transit Line '" + line + "' Train # " + train);
+            out.println("No reservations found for Transit Line '" + line + "' Train Number " + train);
         } else { %>
         <h3>Transit Line: <%=line%></h3>
         <h3>Train Number: <%=train%></h3>
         <h3>Reservations:</h3>
         <table>
             <tr>
-                <th>Reservation #</th>
+                <th>Reservation Number</th>
                 <th>Date Created</th>
+                <th>Passenger Username</th>
                 <th>Departure Date/Time</th>
-                <th>Schedule ID</th>
-                <th>Origin Station</th>
-                <th>Destination Station</th>
                 <th>Class</th>
-                <th>Seat #</th>
+                <th>Seat Number</th>
                 <th>Total Fare</th>
                 <th>Booking Fee</th>
                 <th>Customer Representative</th>
             </tr>
-                <% while (rs.next()) { %>
+                <% do { %>
             <tr>
                 <td><%=rs.getString("res_num")%></td>
                 <td><%=rs.getString("res_date")%></td>
+                <td><%=rs.getString("username")%></td>
                 <td><%=rs.getString("dep_datetime")%></td>
-                <td><%=rs.getString("scheduleID")%></td>
-                <td><%=rs.getString("origin_station")%></td>
-                <td><%=rs.getString("dest_station")%></td>
                 <td><%=rs.getString("class")%></td>
                 <td><%=rs.getString("seat_num")%></td>
                 <td><%=rs.getString("total_fare")%></td>
                 <td><%=rs.getString("booking_fee")%></td>
                 <td><%=rs.getString("cust_rep")%></td>
             </tr>
-            <% }
+            <% } while (rs.next());
         }
         con.close();
         st.close();

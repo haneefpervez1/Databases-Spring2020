@@ -30,6 +30,11 @@
             out.println("<h3>Total Sales: $" + rs.getString(1) + "</h3>");
         }
 
+        rs = st.executeQuery("SELECT * FROM Reservations WHERE MONTH(res_date)=" + month + " AND YEAR(res_date)=" + year);
+        if (!rs.next()) {
+            out.println("No reservations found for " + month + year);
+        } else { %>
+
         con.close();
         st.close();
     } catch (Exception e) {
