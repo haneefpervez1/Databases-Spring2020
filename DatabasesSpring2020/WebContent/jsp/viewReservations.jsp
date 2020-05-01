@@ -42,6 +42,10 @@
 		float total_fare = rs.getFloat("total_fare");
 		float booking_fee = rs.getFloat("booking_fee");
 		String cust_rep = rs.getString("cust_rep");
+		if(cust_rep == null)
+		{
+			cust_rep = "N/A";
+		}
 		java.sql.Timestamp ariv_time = rs.getTimestamp("arrival_datetime");
 		String tlname = rs.getString("transitlinename");
 		int tid = rs.getInt("tid");
@@ -53,7 +57,7 @@
 					<td><%= res_num %></td>
 					<td><%= date_made %></td>
 					<td><%= username %></td>
-					<td><%= total_fare %></td>
+					<td><%= "$"+total_fare %></td>
 					<td><%= cust_rep %></td>
 					<td><%= origin %>
 					<td><%= dept_time %></td>
