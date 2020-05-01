@@ -26,7 +26,11 @@
             con.close();
             st.close();
             return;
-        } else { %>
+        } else {
+            rs = st.executeQuery("SELECT * FROM Reservations WHERE username='" + username + "'");
+            if (!rs.next()) {
+                out.println("No reservations found for Customer Username '" + username + "'");
+            } else { %>
             <h3>Customer: '<%=username%>'</h3>
             <h3>Reservations:</h3>
             <table>
@@ -43,23 +47,23 @@
                     <th>Booking Fee</th>
                     <th>Customer Representative</th>
                 </tr>
-        <% }
-        rs = st.executeQuery("SELECT * FROM Reservations WHERE username='" + username + "'");
-        while (rs.next()) { %>
-            <tr>
-                <td><%=rs.getString("res_num")%></td>
-                <td><%=rs.getString("res_date")%></td>
-                <td><%=rs.getString("dep_datetime")%></td>
-                <td><%=rs.getString("scheduleID")%></td>
-                <td><%=rs.getString("origin_station")%></td>
-                <td><%=rs.getString("dest_station")%></td>
-                <td><%=rs.getString("class")%></td>
-                <td><%=rs.getString("seat_num")%></td>
-                <td><%=rs.getString("total_fare")%></td>
-                <td><%=rs.getString("booking_fee")%></td>
-                <td><%=rs.getString("cust_rep")%></td>
-            </tr>
-        <% }
+            <% }
+            while (rs.next()) { %>
+                <tr>
+                    <td><%=rs.getString("res_num")%></td>
+                    <td><%=rs.getString("res_date")%></td>
+                    <td><%=rs.getString("dep_datetime")%></td>
+                    <td><%=rs.getString("scheduleID")%></td>
+                    <td><%=rs.getString("origin_station")%></td>
+                    <td><%=rs.getString("dest_station")%></td>
+                    <td><%=rs.getString("class")%></td>
+                    <td><%=rs.getString("seat_num")%></td>
+                    <td><%=rs.getString("total_fare")%></td>
+                    <td><%=rs.getString("booking_fee")%></td>
+                    <td><%=rs.getString("cust_rep")%></td>
+                </tr>
+            <% }
+        }
         con.close();
         st.close();
     } catch (Exception e) {
