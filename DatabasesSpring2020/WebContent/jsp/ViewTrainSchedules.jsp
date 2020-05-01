@@ -8,6 +8,7 @@
 <title>Train Schedules</title>
 </head>
 <body>
+	<a href="Welcome.jsp">Back to Home</a>
 	<h3>Train Schedules</h3>
 	<h4>Search</h4>
 	<form action="searchTrains.jsp" method="POST">

@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/styles.css">
 </head>
 <body>
+	<a href="ViewTrainSchedules.jsp">Back to Train Schedules</a>
 	<h3>Train Stops</h3>
 	<table>
 	<tr>

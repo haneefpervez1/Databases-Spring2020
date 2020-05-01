@@ -15,11 +15,13 @@
 		Connection con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
 		Statement st = con.createStatement();
 		ResultSet rs;
-		rs = st.executeQuery("select question, answer from Messages where answer is not null and (question like '%"+ search + "%' or answer like '%"+ search+ "%');");
+		rs = st.executeQuery("select question, answer from Messages where (question like '%"+ search + "%' or answer like '%"+ search+ "%');");
 		while (rs.next()) {
 			String question = rs.getString("question");
 			String answer = rs.getString("answer");
-			
+			if (answer == null) {
+				answer = "No answer yet";
+			}
 			%>
 				<p>Question: <%= question %> </p>
 				<p>Answer:  <%= answer%></p>
