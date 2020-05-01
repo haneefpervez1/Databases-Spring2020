@@ -53,7 +53,7 @@
 <title>Your Reservation</title>
 </head>
 <body>
-	<h4>Your Total Fare is <%= "$" + result %></h4>
+	<h4>Your Reservation is confirmed: Your Total Fare is <%= "$" + result %></h4>
 	<a href="viewReservations.jsp">View Your Reservations here</a>
 </body>
 </html>
