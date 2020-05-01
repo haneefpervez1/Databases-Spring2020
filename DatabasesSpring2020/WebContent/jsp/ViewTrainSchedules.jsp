@@ -24,7 +24,7 @@
 					String station = rs.getString("OriginStation");
 					System.out.println(station);
 					%>
-						<option value="<%= station%>"><%= station %></option>
+						<option value="<%= station%>">Origin: <%= station %></option>
 					<% 
 				}
 				con1.close();
@@ -43,7 +43,7 @@
 				while (rs2.next()) {
 					String station = rs2.getString("DestStation");
 					%>
-						<option value="<%= station%>"><%= station %></option>
+						<option value="<%= station%>">Destination: <%= station %></option>
 					<% 
 				}
 				con.close();
