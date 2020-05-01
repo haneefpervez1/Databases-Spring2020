@@ -243,6 +243,8 @@ Customer Who Generated Most Revenue: '<%=bestCustomer%>'
             while (rs.next()) {
                 out.println(rs.getString("transitlinename") + "<br>");
             }
+            con.close();
+            st.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
