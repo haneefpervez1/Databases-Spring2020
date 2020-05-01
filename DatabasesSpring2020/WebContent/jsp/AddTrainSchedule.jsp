@@ -12,8 +12,9 @@
 	<h4>Add a train schedule</h4>
 	<%
 	try{
-	ApplicationDB d = new ApplicationDB();	
-	Connection c = db.getConnection();
+	Class.forName("com.mysql.jdbc.Driver").newInstance();
+        Connection c = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
+        Statement st = con.createStatement();
 	
     String newTransitLineName = (String)request.getParameter("transitlinename");
     String newTrain = (String)request.getParameter("tid");
