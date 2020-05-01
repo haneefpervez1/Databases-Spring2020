@@ -1,4 +1,11 @@
 <%@ page import = "java.sql.*" %>
+
+<%
+    if ((session.getAttribute("user") == null) || !(session.getAttribute("role").equals("Manager"))) {
+        response.sendRedirect("../index.html");
+    }
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
