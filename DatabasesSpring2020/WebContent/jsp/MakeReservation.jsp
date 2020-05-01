@@ -10,6 +10,13 @@
 <body>
 	<h4>Make a Reservation</h4>
 	<%
+		String avail_seat = request.getParameter("avail_seat");
+		System.out.println(avail_seat);
+		if(avail_seat.equals("0"))
+		{
+			out.println("Error: No more seats available!");
+			return;
+		}
 		String transitline = (String)request.getParameter("line");
 		String origin = (String)request.getParameter("origin");
 		String dest = (String)request.getParameter("dest");

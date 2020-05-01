@@ -73,6 +73,7 @@ while (rs.next()) {
 	request.setAttribute("schedId", schedId);
 	request.setAttribute("fare", fare);
 	request.setAttribute("numStops", numStops);
+	request.setAttribute("avail_seat", avail_seat);
 	%>
 			<tr>
 				<td><%= transitlinename %></td>
@@ -88,7 +89,7 @@ while (rs.next()) {
 				<td><%= totalTravel %></td>
 				<td><%= fare_amount %></td>
 				<td>
-					<a href="MakeReservation.jsp?line=${transitlinename}&origin=${origin}&dest=${dest}&dept_time=${dept_time}&schedId=${schedId}&fare=${fare}&originString=${originString}&destString=${destString}">Reserve</a>
+					<a href="MakeReservation.jsp?line=${transitlinename}&origin=${origin}&dest=${dest}&dept_time=${dept_time}&schedId=${schedId}&fare=${fare}&originString=${originString}&destString=${destString}&avail_seat=${avail_seat}">Reserve</a>
 				</td>
 			</tr>
 <% } %>	
