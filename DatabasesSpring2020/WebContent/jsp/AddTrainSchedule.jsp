@@ -14,7 +14,7 @@
 	try{
 	Class.forName("com.mysql.jdbc.Driver").newInstance();
         Connection c = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
-        Statement st = con.createStatement();
+        Statement st = c.createStatement();
 	
     String newTransitLineName = (String)request.getParameter("transitlinename");
     String newOrigin=(String)request.getParameter("origin_station");
@@ -72,6 +72,7 @@
     p.setString(6, total_travel_time);
     p.executeUpdate();
     
+    st.close();
     c.close();
     } catch (Exception ex) {
 		out.print(ex);
