@@ -19,6 +19,7 @@
 <title>Send Answer</title>
 </head>
 <body>
+	<a href="respondToCustomerQuestion.jsp">Back to Question Home</a>
 	<p>Question has been answered</p>
 	<a href="respondToCustomerQuestion.jsp">Back to Customer Questions</a>
 </body>
