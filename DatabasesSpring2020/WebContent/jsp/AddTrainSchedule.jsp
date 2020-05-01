@@ -17,20 +17,50 @@
         Statement st = con.createStatement();
 	
     String newTransitLineName = (String)request.getParameter("transitlinename");
+    String newOrigin=(String)request.getParameter("origin_station");
+    String newDest=(String)request.getParameter("dest_station");
+    String newFare=(String)request.getParameter("fare_amount");
+    String newFareType=(String)request.getParameter("fare_type");
+    String newFareDiscount=(String)request.getParameter("fare_discount");
     String newTrain = (String)request.getParameter("tid");
+    String newTrainSeats = (String)request.getParameter("total_seats");
+    String newTrainCars = (String)request.getParameter("total_cars");
     String newAvailSeats = (String)request.getParameter("avail_seats");
     String newArrival = (String)request.getParameter("arrival_datetime");
     String newDeparture = (String)request.getParameter("dep_datetime");
-    String newTravelTime = (String)request.getParameter("total travel time");
+    String newTravelTime = (String)request.getParameter("total_travel_time");
 
     
     request.setAttribute("transitlinename", transitlinename);
+    request.setAttribute("origin_station", origin_station);
+    request.setAttribute("dest_station", dest_station);
+    request.setAttribute("fare_amount", fare_amount);
+    request.setAttribute("fare_type", fare_type);
+    request.setAttribute("fare_discount", fare_discount);
     request.setAttribute("tid", tid);
+    request.setAttribute("total_seats", total_seats);
+    request.setAttribute("total_cars", total_cars);
     request.setAttribute("avail_seats", avail_seats);
     request.setAttribute("arrival_datetime", arrival_datetime);
     request.setAttribute("dep_datetime", dep_datetime);
-    request.setAttribute("total travel time", total travel time);
+    request.setAttribute("total_travel time", total_travel_time);
  
+    String i = "INSERT INTO Train(name)" + "VALUES (?)";
+    PreparedStatement p = c.prepareStatement(i);
+    p.setString(1, tid);
+    p.setString(2, total_seats);
+    p.setString(3, total_cars);
+    p.executeUpdate();
+    
+    String i = "INSERT INTO Transit_Line(name)" + "VALUES (?)";
+    PreparedStatement p = c.prepareStatement(i);
+    p.setString(1, transitlinename);
+    p.setString(2, origin_station);
+    p.setString(3, dest_station);
+    p.setString(4, fare_amount);
+    p.setString(5, fare_type);
+    p.setString(6, fare_discount);
+    p.executeUpdate();
     
     String i = "INSERT INTO Train_Schedule(name)" + "VALUES (?)";
     PreparedStatement p = c.prepareStatement(i);
