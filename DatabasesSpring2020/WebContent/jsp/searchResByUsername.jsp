@@ -27,8 +27,7 @@
             st.close();
             return;
         } else { %>
-            Customer: '<%=username%>'
-            <br>
+            <h3>Customer: '<%=username%>'</h3>
             <h3>Reservations:</h3>
             <table>
                 <tr>

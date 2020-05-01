@@ -17,10 +17,8 @@
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery("SELECT * FROM Reservations r JOIN Train_Schedule ts ON r.scheduleID=ts.scheduleID WHERE transitlinename='" + line + "' AND tid=" + train);
         %>
-Transit Line: <%=line%>
-<br>
-Train Number: <%=train%>
-<br>
+<h3>Transit Line: <%=line%></h3>
+<h3>Train Number: <%=train%></h3>
 <h3>Reservations:</h3>
 <table>
     <tr>
