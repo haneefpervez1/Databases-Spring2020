@@ -40,9 +40,41 @@
             if (rs.next()) {
                 out.println("<h3>Total Revenue: $" + rs.getString(1) + "</h3>");
             }
-        }
+
+            rs = st.executeQuery("SELECT * FROM Reservations WHERE username='" + username + "'");
+            if (!rs.next()) {
+                out.println("No reservations found for Customer '" + username + "'");
+            } else { %>
+                <h3>Reservations:</h3>
+                <table>
+                    <tr>
+                        <th>Reservation Number</th>
+                        <th>Date Created</th>
+                        <th>Passenger Username</th>
+                        <th>Departure Date/Time</th>
+                        <th>Class</th>
+                        <th>Seat Number</th>
+                        <th>Total Fare</th>
+                        <th>Booking Fee</th>
+                        <th>Customer Representative</th>
+                    </tr>
+                        <% do { %>
+                    <tr>
+                        <td><%=rs.getString("res_num")%></td>
+                        <td><%=rs.getString("res_date")%></td>
+                        <td><%=rs.getString("username")%></td>
+                        <td><%=rs.getString("dep_datetime")%></td>
+                        <td><%=rs.getString("class")%></td>
+                        <td><%=rs.getString("seat_num")%></td>
+                        <td><%=rs.getString("total_fare")%></td>
+                        <td><%=rs.getString("booking_fee")%></td>
+                        <td><%=rs.getString("cust_rep")%></td>
+                    </tr>
+                    <% } while (rs.next());
+            }
         con.close();
         st.close();
+        }
     } catch (Exception e) {
         e.printStackTrace();
     }

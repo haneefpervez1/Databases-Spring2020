@@ -36,7 +36,7 @@
         } else {
             rs = st.executeQuery("SELECT * FROM Reservations WHERE username='" + username + "'");
             if (!rs.next()) {
-                out.println("No reservations found for Customer Username '" + username + "'");
+                out.println("No reservations found for Customer '" + username + "'");
             } else { %>
             <h3>Customer: '<%=username%>'</h3>
             <h3>Reservations:</h3>
