@@ -15,7 +15,7 @@
         Connection con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
         Statement st = con.createStatement();
 
-        ResultSet rs = st.executeQuery("SELECT SUM(total_fare + booking_fee) FROM Reservations WHERE MONTH(res_date)="+month);
+        ResultSet rs = st.executeQuery("SELECT IFNULL(SUM(total_fare + booking_fee), '0.00') FROM Reservations WHERE MONTH(res_date)="+month);
         if (rs.next()) {
             out.println("<h3>" + Month.of(month).name() + "<br>Total Sales: $" + rs.getString(1) + "</h3>");
         }
