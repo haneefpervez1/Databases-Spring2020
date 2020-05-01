@@ -29,7 +29,7 @@
         } else {
             out.println("<h3>Customer Username: " + username + "</h3>");
 
-            rs = st.executeQuery("SELECT SUM(total_fare + booking_fee) FROM Reservations WHERE username='" + username + "'");
+            rs = st.executeQuery("SELECT IFNULL(SUM(total_fare + booking_fee), '0.00') FROM Reservations WHERE username='" + username + "'");
             if (rs.next()) {
                 out.println("<h3>Total Revenue: $" + rs.getString(1) + "</h3>");
             }
