@@ -115,13 +115,13 @@
 <div class="col">
     <h3>Monthly Sales Report</h3>
     <form action="monthlySalesReport.jsp" method="post">
-        <label for="month">Month:</label>
-        <select id="month" name="month">
+        <label for="month_year">Month:</label>
+        <select id="month_year" name="month_year">
             <%
             try {
-                ResultSet rs = st.executeQuery("SELECT DISTINCT MONTH(res_date) FROM Reservations");
+                ResultSet rs = st.executeQuery("SELECT DISTINCT MONTH(res_date) month, YEAR(res_date) year FROM Reservations");
                 while (rs.next()) { %>
-                    <option value="<%=rs.getString(1)%>"><%=Month.of(Integer.parseInt(rs.getString(1))).name()%></option>
+                    <option value="<%=rs.getString("month")%>,<%=rs.getString("year")%>"><%=Month.of(Integer.parseInt(rs.getString(1))).name()%> <%=rs.getString("year")%></option>
                 <% }
             } catch (Exception e) {
                 e.printStackTrace();
