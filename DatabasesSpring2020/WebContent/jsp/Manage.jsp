@@ -1,10 +1,24 @@
 <%@ page import = "java.sql.*, java.time.*" %>
 
+<%!
+    Statement st;
+    Connection con;
+%>
+
 <%
     if ((session.getAttribute("user") == null) || !(session.getAttribute("role").equals("Manager"))) {
         response.sendRedirect("../index.html");
     } else {
         out.println("<a href='Logout.jsp'>Log Out</a><br>");
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
+            st = con.createStatement();
+        } catch (Exception e){
+            e.printStackTrace();
+            response.sendRedirect("Login.jsp");
+        }
     }
 %>
 
@@ -105,16 +119,10 @@
         <select id="month" name="month">
             <%
             try {
-                Class.forName("com.mysql.jdbc.Driver").newInstance();
-                Connection con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
-                Statement st = con.createStatement();
-                ResultSet rs;
-                rs = st.executeQuery("SELECT DISTINCT MONTH(res_date) FROM Reservations");
+                ResultSet rs = st.executeQuery("SELECT DISTINCT MONTH(res_date) FROM Reservations");
                 while (rs.next()) { %>
                     <option value="<%=rs.getString(1)%>"><%=Month.of(Integer.parseInt(rs.getString(1))).name()%></option>
                 <% }
-                con.close();
-                st.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -132,16 +140,10 @@
         <select id="transitLineReservations" name="line">
         <%
             try {
-                Class.forName("com.mysql.jdbc.Driver").newInstance();
-                Connection con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
-                Statement st = con.createStatement();
-                ResultSet rs;
-                rs = st.executeQuery("SELECT DISTINCT transitlinename FROM Reservations JOIN Train_Schedule USING (scheduleID)");
+                ResultSet rs = st.executeQuery("SELECT DISTINCT transitlinename FROM Reservations JOIN Train_Schedule USING (scheduleID)");
                 while (rs.next()) {%>
                     <option value="<%=rs.getString(1)%>"><%=rs.getString(1)%></option>
                 <% }
-                con.close();
-                st.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -152,16 +154,10 @@
         <select id="trainNumber" name="train">
             <%
                 try {
-                    Class.forName("com.mysql.jdbc.Driver").newInstance();
-                    Connection con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
-                    Statement st = con.createStatement();
-                    ResultSet rs;
-                    rs = st.executeQuery("SELECT DISTINCT tid FROM Reservations JOIN Train_Schedule USING (scheduleID) ORDER BY CAST(tid as SIGNED) ");
+                    ResultSet rs = st.executeQuery("SELECT DISTINCT tid FROM Reservations JOIN Train_Schedule USING (scheduleID) ORDER BY CAST(tid as SIGNED) ");
                     while (rs.next()) {%>
             <option value="<%=rs.getString(1)%>"><%=rs.getString(1)%></option>
             <% }
-                con.close();
-                st.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -185,16 +181,10 @@
         <select id="transitLineRevenue" name="line">
             <%
                 try {
-                    Class.forName("com.mysql.jdbc.Driver").newInstance();
-                    Connection con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
-                    Statement st = con.createStatement();
-                    ResultSet rs;
-                    rs = st.executeQuery("SELECT DISTINCT transitlinename FROM Reservations JOIN Train_Schedule USING (scheduleID)");
+                    ResultSet rs = st.executeQuery("SELECT DISTINCT transitlinename FROM Reservations JOIN Train_Schedule USING (scheduleID)");
                     while (rs.next()) {%>
             <option value="<%=rs.getString(1)%>"><%=rs.getString(1)%></option>
             <% }
-                con.close();
-                st.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -208,16 +198,10 @@
         <select id="destinationCity" name="destCity">
             <%
                 try {
-                    Class.forName("com.mysql.jdbc.Driver").newInstance();
-                    Connection con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
-                    Statement st = con.createStatement();
-                    ResultSet rs;
-                    rs = st.executeQuery("SELECT DISTINCT city FROM Reservations r JOIN Stations s ON r.dest_station=s.sid");
+                    ResultSet rs = st.executeQuery("SELECT DISTINCT city FROM Reservations r JOIN Stations s ON r.dest_station=s.sid");
                     while (rs.next()) {%>
             <option value="<%=rs.getString("city")%>"><%=rs.getString("city")%></option>
             <% }
-                con.close();
-                st.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -238,17 +222,10 @@
     <%! String bestCustomer = ""; %>
     <%
         try {
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-            Connection con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
-            Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("SELECT username FROM (SELECT username, SUM(total_fare + booking_fee) rev FROM Reservations GROUP BY username ORDER BY rev DESC LIMIT 1) t1");
-
             if (rs.next()) {
                 bestCustomer = rs.getString("username");
             }
-
-            con.close();
-            st.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -262,17 +239,10 @@ Customer Who Generated Most Revenue: '<%=bestCustomer%>'
 5 Most Active Transit Lines:<br>
     <%
         try {
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-            Connection con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
-            Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("SELECT transitlinename, COUNT(transitlinename) resCount FROM Reservations r JOIN Train_Schedule ts ON r.scheduleID=ts.scheduleID GROUP BY transitlinename ORDER BY resCount DESC LIMIT 5");
-
             while (rs.next()) {
                 out.println(rs.getString("transitlinename") + "<br>");
             }
-
-            con.close();
-            st.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
