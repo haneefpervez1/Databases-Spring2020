@@ -2,6 +2,15 @@
     pageEncoding="UTF-8"%>
     <%@ page import = "java.sql.*" %>
     <%
+	    Class.forName("com.mysql.jdbc.Driver").newInstance();
+		Connection con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
+		Statement st = con.createStatement();
+		ResultSet rs1;
+		rs1 = st.executeQuery("select username from Users where role = 'Customer Representative' order by rand() limit 1;");
+		rs1.next();
+		String rep = rs1.getString("username");
+		rs1.close();
+    	
     	float fare = Float.parseFloat(request.getParameter("fare"));
     	String fare_type = (String)request.getParameter("fare_type");
     	System.out.println(fare_type);
@@ -32,12 +41,8 @@
 		String origin = request.getParameter("origin");
 		String dest = request.getParameter("dest");
 		double booking_fee = result * 0.5;
-		//System.out.println("INSERT INTO Reservations(username, res_date, dep_datetime, scheduleID, origin_station, dest_station, class, total_fare, book_fare) values ('" + username + "', GETDATE(), '" + dep_datetime + "', " + schedId + ", " + origin + ", " + dest + ", '" + ticket_class + "', " + result + ", " + booking_fee + ")");
-		Class.forName("com.mysql.jdbc.Driver").newInstance();
-    	Connection con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
-    	Statement st = con.createStatement();
-    	int rs;
-    	rs = st.executeUpdate("INSERT INTO Reservations(username, res_date, dep_datetime, scheduleID, origin_station, dest_station, class, seat_num, total_fare, booking_fee) values ('" + username + "', CURRENT_TIMESTAMP(), '" + dep_datetime + "', " + schedId + ", " + origin + ", " + dest + ", '" + ticket_class + "', 1, " + result + ", " + booking_fee + ")");
+		int rs;
+    	rs = st.executeUpdate("INSERT INTO Reservations(username, res_date, dep_datetime, scheduleID, origin_station, dest_station, class, seat_num, total_fare, booking_fee, cust_rep) values ('" + username + "', CURRENT_TIMESTAMP(), '" + dep_datetime + "', " + schedId + ", " + origin + ", " + dest + ", '" + ticket_class + "', 1, " + result + ", " + booking_fee +", '" + rep + "')");
     	con.close();
     	st.close();
     %>
