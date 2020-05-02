@@ -25,6 +25,9 @@ Welcome <%=session.getAttribute("user")%>
 		<a href="RepMakeReservation.jsp">Make a Reservation</a>
 		<a href="deleteReservation.jsp">Delete a Reservation</a>
 		<a href="EditReservation.jsp">Edit a Reservation</a>
+		<a href="ListTrainSchedulesOriginDest.jsp">List Train Schedules by Origin and Destination</a>
+		<a href="ListTrainSchedulesStation.jsp">List Train Schedules by Station</a>
+		<a href="ListCustomers.jsp">List Customers</a>
 <%
     } else if (role.equals("Manager")) {
 		response.sendRedirect("Manage.jsp");
