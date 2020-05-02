@@ -80,7 +80,7 @@
 %>
 </form>
 	<h4>Sort</h4>
-	<form action="sortTrains.jsp" method="POST">
+	<form action="AddTrainSchedule.jsp" method="POST">
 		<select id="sort" name="sort">
 		        <option value="transitlinename">Transit Line Name</option>
 			<option value="arrival_datetime">Arrival Time</option>
