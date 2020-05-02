@@ -19,6 +19,12 @@ Welcome <%=session.getAttribute("user")%>
     } else if (role.equals("Customer Representative")){
 %>
 		<a href="respondToCustomerQuestion.jsp">Respond to Customer Questions</a>
+		<a href="AddTrainSchedule.jsp">Add a Train Schedule</a>
+		<a href="DeleteTrainSchedule.jsp">Delete a Train Schedule</a>
+	        <a href="EditTrainSchedule.jsp">Edit a Train Schedule</a>
+		<a href="RepMakeReservation.jsp">Make a Reservation</a>
+		<a href="deleteReservation.jsp">Delete a Reservation</a>
+		<a href="EditReservation.jsp">Edit a Reservation</a>
 <%
     } else if (role.equals("Manager")) {
 		response.sendRedirect("Manage.jsp");
