@@ -78,6 +78,26 @@
 		out.print(ex);
 	}
 %>
+</form>
+	<h4>Sort</h4>
+	<form action="sortTrains.jsp" method="POST">
+		<select id="sort" name="sort">
+		        <option value="transitlinename">Transit Line Name</option>
+			<option value="arrival_datetime">Arrival Time</option>
+			<option value="dep_datetime">Departure Time</option>
+			<option value="origin_station">Origin</option>
+			<option value="dest_station">Destination</option>
+			<option value="fare_amount">Fare</option>
+			<option value="fare_type">Fare Type</option>
+			<option value="fare_discount">Fare Discount</option>
+			<option value="tid">Train ID</option>
+			<option value="total_seats">total_seats</option>
+			<option value="total_cars">total_cars</option>
+			<option value="avail_seats">avail_seats</option>
+			<option value="total_travel_time">total_travel_time</option>
+		</select>
+		<input type="submit" value="Submit"/>
+	</form>
 </body>
 </html>
     
