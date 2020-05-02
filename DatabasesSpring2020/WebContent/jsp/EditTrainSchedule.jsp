@@ -33,5 +33,20 @@
         e.printStackTrace();
     }
 %>
+</form>
+	<h4>Sort</h4>
+	<form action="EditTrainSchedule.jsp" method="POST">
+		<select id="sort" name="sort">
+            <option value="tid">Train Id</option>
+            <option value="transitlinename">transitlinename</option>
+			<option value="arrival_datetime">Arrival Time</option>
+			<option value="dep_datetime">Departure Time</option>
+            <option value="avail_seats">avail_seats</option>
+			<option value="total_travel_time">total_travel_time</option>
+            <option value="scheduleID">scheduleID</option>
+			<option value="fare_amount">Fare</option>
+		</select>
+		<input type="submit" value="Submit"/>
+	</form>
 </body>
 </html>
