@@ -48,7 +48,7 @@
 %>
 </form>
 	<h4>Sort</h4>
-	<form action="sortTrains.jsp" method="POST">
+	<form action="EditReservation.jsp" method="POST">
 		<select id="sort" name="sort">
 			<option value="res_num">res_num</option>
 			<option value="username">username</option>
