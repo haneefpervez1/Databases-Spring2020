@@ -33,31 +33,31 @@
     
     
     String i = "INSERT INTO Train(name)" + "VALUES (?)";
-    PreparedStatement p = c.prepareStatement(i);
+    PreparedStatement p = con.prepareStatement(i);
     p.setString(1, tid);
     p.setString(2, total_seats);
     p.setString(3, total_cars);
     p.executeUpdate();
     
-    String i = "INSERT INTO Transit_Line(name)" + "VALUES (?)";
-    PreparedStatement p = c.prepareStatement(i);
-    p.setString(1, transitlinename);
-    p.setString(2, origin_station);
-    p.setString(3, dest_station);
-    p.setString(4, fare_amount);
-    p.setString(5, fare_type);
-    p.setString(6, fare_discount);
-    p.executeUpdate();
+    String j = "INSERT INTO Transit_Line(name)" + "VALUES (?)";
+    PreparedStatement q = con.prepareStatement(j);
+    q.setString(1, transitlinename);
+    q.setString(2, origin_station);
+    q.setString(3, dest_station);
+    q.setString(4, fare_amount);
+    q.setString(5, fare_type);
+    q.setString(6, fare_discount);
+    q.executeUpdate();
     
-    String i = "INSERT INTO Train_Schedule(name)" + "VALUES (?)";
-    PreparedStatement p = c.prepareStatement(i);
-    p.setString(1, transitlinename);
-    p.setString(2, tid);
-    p.setString(3, availseats);
-    p.setString(4, arrival_datetime);
-    p.setString(5, dep_datetime);
-    p.setString(6, total_travel_time);
-    p.executeUpdate();
+    String k = "INSERT INTO Train_Schedule(name)" + "VALUES (?)";
+    PreparedStatement r = con.prepareStatement(k);
+    r.setString(1, transitlinename);
+    r.setString(2, tid);
+    r.setString(3, avail_seats);
+    r.setString(4, arrival_datetime);
+    r.setString(5, dep_datetime);
+    r.setString(6, total_travel_time);
+    r.executeUpdate();
     
     st.close();
     con.close();
