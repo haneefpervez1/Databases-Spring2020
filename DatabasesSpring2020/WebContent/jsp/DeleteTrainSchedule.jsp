@@ -14,8 +14,7 @@
 	st.close();
 	response.sendRedirect("ViewTrainSchedules.jsp");
 %>
-</form>
-	<h4>Sort</h4>
+
 	<form action="sDeleteTrainSchedule.jsp" method="POST">
 		<select id="sort" name="sort">
 			<option value="scheduleID">scheduleID</option>
