@@ -13,8 +13,8 @@
 	<%
 	try{
 	Class.forName("com.mysql.jdbc.Driver").newInstance();
-        Connection c = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
-        Statement st = c.createStatement();
+        Connection con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
+        Statement st = con.createStatement();
 	
     String newTransitLineName = (String)request.getParameter("transitlinename");
     String newOrigin=(String)request.getParameter("origin_station");
@@ -73,7 +73,7 @@
     p.executeUpdate();
     
     st.close();
-    c.close();
+    con.close();
     } catch (Exception ex) {
 		out.print(ex);
 	}
