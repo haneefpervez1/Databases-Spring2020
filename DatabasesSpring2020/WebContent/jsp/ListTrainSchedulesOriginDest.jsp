@@ -49,7 +49,7 @@
         e.printStackTrace();
     }
 %>
-<form action="ListTrainSchedules.jsp" method="POST">
+<form action="ListTrainSchedulesOriginDest.jsp" method="POST">
 		<select id="sort" name="sort">
 			<option value="origin_station">Origin</option>
 			<option value="dest_station">Destination</option>
