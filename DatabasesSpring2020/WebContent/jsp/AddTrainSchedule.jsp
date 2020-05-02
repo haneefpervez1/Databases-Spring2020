@@ -32,14 +32,14 @@
 
     
     
-    String i = "INSERT INTO Train(name)" + "VALUES (?)";
+    String i = "INSERT INTO Train(c1, c2, c3)" + "VALUES (?, ?, ?)";
     PreparedStatement p = con.prepareStatement(i);
     p.setString(1, tid);
     p.setString(2, total_seats);
     p.setString(3, total_cars);
     p.executeUpdate();
     
-    String j = "INSERT INTO Transit_Line(name)" + "VALUES (?)";
+    String j = "INSERT INTO Transit_Line(c1, c2, c3, c4, c5, c6)" + "VALUES (?, ?, ?, ?, ?, ?)";
     PreparedStatement q = con.prepareStatement(j);
     q.setString(1, transitlinename);
     q.setString(2, origin_station);
@@ -49,7 +49,7 @@
     q.setString(6, fare_discount);
     q.executeUpdate();
     
-    String k = "INSERT INTO Train_Schedule(name)" + "VALUES (?)";
+    String k = "INSERT INTO Train_Schedule(c1, c2, c3, c4, c5, c6)" + "VALUES (?, ?, ?, ?, ?, ? )";
     PreparedStatement r = con.prepareStatement(k);
     r.setString(1, transitlinename);
     r.setString(2, tid);
