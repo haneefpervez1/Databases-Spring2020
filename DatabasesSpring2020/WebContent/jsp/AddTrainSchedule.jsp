@@ -65,8 +65,7 @@
 		out.print(ex);
 	}
 %>
-</form>
-	<h4>Sort</h4>
+
 	<form action="AddTrainSchedule.jsp" method="POST">
 		<select id="sort" name="sort">
 		        <option value="transitlinename">Transit Line Name</option>
