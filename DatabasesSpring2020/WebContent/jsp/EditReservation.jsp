@@ -46,8 +46,7 @@
         e.printStackTrace();
     }
 %>
-</form>
-	<h4>Sort</h4>
+
 	<form action="EditReservation.jsp" method="POST">
 		<select id="sort" name="sort">
 			<option value="res_num">res_num</option>
