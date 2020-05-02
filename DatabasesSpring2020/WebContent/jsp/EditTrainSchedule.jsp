@@ -33,8 +33,7 @@
         e.printStackTrace();
     }
 %>
-</form>
-	<h4>Sort</h4>
+
 	<form action="EditTrainSchedule.jsp" method="POST">
 		<select id="sort" name="sort">
             <option value="tid">Train Id</option>
