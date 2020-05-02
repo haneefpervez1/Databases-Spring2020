@@ -29,7 +29,7 @@
             st.close();
             return;
         } else if (!rs.getString("role").equals("Customer")) {
-            out.println("Error: '" + username + "' Is Not A Customer");
+            out.println("Error: User '" + username + "' Is Not A Customer");
             con.close();
             st.close();
             return;

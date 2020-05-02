@@ -31,7 +31,7 @@
         st.executeUpdate("DELETE FROM Users WHERE username='" + username + "'");
         con.close();
         st.close();
-        out.println("User Successfully Deleted: " + username);
+        out.println("User Successfully Deleted: '" + username + "'");
     } catch (Exception e) {
         e.printStackTrace();
     }
