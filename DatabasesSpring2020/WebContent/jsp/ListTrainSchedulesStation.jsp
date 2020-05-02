@@ -15,7 +15,7 @@
         Connection con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
         Statement st = con.createStatement();
         String sname=request.getParameter("name");
-        String str = select * from Train_Schedule AS ts, Transit_Line AS tl where ts.transitlinename=tl.transitlinename AND (tl.origin_station=(select sid from Stations where name="sname") OR tl.dest_station=(select sid from Stations where name="sname"));
+        String str = "select * from Train_Schedule AS ts, Transit_Line AS tl where ts.transitlinename=tl.transitlinename AND (tl.origin_station=(select sid from Stations where name="sname") OR tl.dest_station=(select sid from Stations where name="sname"))";
         ResultSet result = stmt.executeQuery(str);
         %>
         <h3>Train Schedule:</h3>
