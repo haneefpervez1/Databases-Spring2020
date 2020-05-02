@@ -12,8 +12,8 @@
 	<%
 	try{
 	Class.forName("com.mysql.jdbc.Driver").newInstance();
-  Connection c = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
-  Statement st = c.createStatement();
+  Connection con = DriverManager.getConnection("jdbc:mysql://rds19.csvrkelvffmz.us-east-2.rds.amazonaws.com:3306/rds19", "group19", "database");
+  Statement st = con.createStatement();
   String res_num= (String)request.getParameter("res_num");
   String username= (String)request.getParameter("username");
   String res_date= (String)request.getParameter("res_date");
@@ -39,7 +39,7 @@
                 + "', booking_fee ='" + booking_fee
                 + "', cust_rep ='" + cust_rep
                 + "' WHERE res_num = '" + res_num + "'");
-        c.close();
+        con.close();
         st.close();
   } catch (Exception e) {
         e.printStackTrace();
