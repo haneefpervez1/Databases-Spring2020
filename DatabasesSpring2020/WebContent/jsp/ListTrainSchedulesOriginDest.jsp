@@ -17,7 +17,7 @@
         Statement st = con.createStatement();
         String origin=request.getParameter("origin_station");
         String dest=request.getParameter("dest_station");
-        String str = "select * from Train_Schedule AS ts, Transit_Line AS tl where ts.transitlinename=tl.transitlinename AND tl.origin_station=(select sid from Stations where name="origin") AND tl.dest_station=(select sid from Stations where name="dest")";
+        String str = "select * from Train_Schedule AS ts, Transit_Line AS tl where ts.transitlinename=tl.transitlinename AND tl.origin_station=(select sid from Stations where name="+origin+") AND tl.dest_station=(select sid from Stations where name="+dest+")";
         ResultSet result = stmt.executeQuery(str);
         %>
         <h3>Train Schedule:</h3>
