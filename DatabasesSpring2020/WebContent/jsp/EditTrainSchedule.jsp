@@ -16,7 +16,7 @@
         String scheduleID = (String)request.getParameter("scheduleID");
         String transitlinename = (String)request.getParameter("transitlinename");
         String tid = (String)request.getParameter("tid");
-        String AvailSeats = (String)request.getParameter("avail_seats");
+        String avail_seats = (String)request.getParameter("avail_seats");
         String arrival_datetime = (String)request.getParameter("arrival_datetime");
         String dep_datetime = (String)request.getParameter("dep_datetime");
         String total_travel_time = (String)request.getParameter("total_travel_time");
