@@ -46,5 +46,24 @@
         e.printStackTrace();
     }
 %>
+</form>
+	<h4>Sort</h4>
+	<form action="sortTrains.jsp" method="POST">
+		<select id="sort" name="sort">
+			<option value="res_num">res_num</option>
+			<option value="username">username</option>
+			<option value="res_date">res_date</option>
+			<option value="dep_datetime">Departure Time</option>
+			<option value="origin_station">Origin</option>
+			<option value="dest_station">Destination</option>
+			<option value="scheduleID">scheduleID</option>
+			<option value="class">class</option>
+			<option value="seat_num">seat_num</option>
+			<option value="booking_fee">booking_fee</option>
+			<option value="cust_rep">cust_rep</option>
+			<option value="total_fare">Total Fare</option>
+		</select>
+		<input type="submit" value="Submit"/>
+	</form>
 </body>
 </html>
