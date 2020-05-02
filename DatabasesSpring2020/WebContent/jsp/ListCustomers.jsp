@@ -16,7 +16,7 @@
         Statement st = con.createStatement();
         String tline=request.getParameter("transitlinename");
         String trn=request.getParameter("train");
-        String str = select * from Users AS u, Reservations AS r, Train_Schedule AS ts where u.username=r.username AND r.scheduleID=ts.scheduleID AND ts.transitlinename="tline" AND ts.tid="trn"
+        String str = "(select * from Users AS u, Reservations AS r, Train_Schedule AS ts where u.username=r.username AND r.scheduleID=ts.scheduleID AND ts.transitlinename="tline" AND ts.tid="trn")"
         ResultSet result = stmt.executeQuery(str);
         %>
         <h3>Customers:</h3>
